@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { resolvePath } from './file-system';
 import { useShell } from './provider';
@@ -96,7 +96,8 @@ export const ShellContent = () => {
               color={c.color}
               style={l.path && idx === 0 ? {} : { display: 'block' }}
             >
-              {c.icon && <ShellIco src={c.icon} />} {c.text}
+              {c.icon && <ShellIco src={c.icon} />}
+              {c.text}
             </Cmd>
           ))}
         </div>
@@ -141,6 +142,7 @@ const ShellIco = styled.img`
   width: 11px;
   height: 11px;
   vertical-align: middle;
+  margin-right: 6px;
 `;
 
 const Cmd = styled.span`
