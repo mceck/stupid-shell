@@ -124,7 +124,7 @@ const CloseIcon = styled(Icon)`
 const MinimizeIcon = styled(Icon)`
   background-color: #fdaf24;
   ::after {
-    clip-path: polygon(20% 42%, 80% 42%, 80% 58%, 20% 58%);
+    clip-path: polygon(20% 46%, 80% 46%, 80% 62%, 20% 62%);
   }
 `;
 

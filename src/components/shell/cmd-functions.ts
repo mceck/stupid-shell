@@ -154,7 +154,7 @@ CMD_EXEC.set('help', (shell: IShell, params?: string[]) => {
           text: '-----',
         },
         {
-          text: 'Commands:',
+          text: 'Shell commands:',
           color: shellColors.blue,
         },
         {

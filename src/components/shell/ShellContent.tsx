@@ -68,6 +68,7 @@ export const ShellContent = () => {
           let at = shell.historyMarker;
           if (at === undefined || at >= history.length - 1) {
             setCmd('');
+            shell.setHistoryMarker!();
           } else {
             at++;
             setCmd(history[at].cmd[0].text);
