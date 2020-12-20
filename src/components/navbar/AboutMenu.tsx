@@ -22,7 +22,7 @@ export const AboutMenu = () => {
         Email: <Link href="mailto:matcecco@gmail.com">matcecco@gmail.com</Link>
       </Line>
       <Line>
-        Profession: <Txt>Developer</Txt>
+        Profession: <Txt>Fullstack developer</Txt>
       </Line>
     </AboutFrame>
   );

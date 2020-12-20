@@ -16,8 +16,8 @@ export const Shell = () => {
 
 const ShellFrame = styled.div`
   position: fixed;
-  width: 53vw;
-  height: 30vw;
+  width: 530px;
+  height: 300px;
   min-width: 530px;
   min-height: 300px;
   border-radius: 10px;

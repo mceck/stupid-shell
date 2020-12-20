@@ -12,6 +12,7 @@ export type Separator = '$' | '#';
 
 export interface ISpan {
   text: string;
+  icon?: string;
   color?: string;
 }
 
@@ -43,15 +44,16 @@ export const initialShellState: IShell = {
     {
       cmd: [
         {
-          text: 'Welcome to McDev SH!',
+          text: '----- Welcome to McDev SH! -----',
+        },
+        {
+          text: 'Type help to print usage',
         },
       ],
-      path: MCDEV,
-      sep: '$',
     },
   ],
-  x: 300,
-  y: 200,
+  x: 50,
+  y: 50,
   path: MCDEV,
   sep: '$',
 };

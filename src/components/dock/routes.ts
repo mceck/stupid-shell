@@ -11,11 +11,16 @@ export const ROUTES: {
   {
     label: 'Skills',
     icon: process.env.PUBLIC_URL + '/skills.png',
-    cmd: 'cd skills',
+    cmd: 'clear && ls ~/skills',
   },
   {
     label: 'Contacts',
     icon: process.env.PUBLIC_URL + '/contacts.png',
-    cmd: 'cd ..',
+    cmd: 'clear && contact.me',
+  },
+  {
+    label: 'Help',
+    icon: process.env.PUBLIC_URL + '/help.png',
+    cmd: 'clear && help',
   },
 ];

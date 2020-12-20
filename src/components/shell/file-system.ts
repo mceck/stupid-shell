@@ -1,23 +1,30 @@
 import { CmdFn } from './cmd-functions';
+import { shellColors } from './shell-colors';
 
 export interface IFile {
   name: string;
   children?: File[];
   parent?: File;
+  icon?: string;
   ln?: CmdFn;
+  textColor?: string;
 }
 
 export class File implements IFile {
   name: string;
   children?: File[];
   parent?: File;
+  icon?: string;
   ln?: CmdFn;
+  textColor?: string;
 
   constructor(file: IFile) {
     this.name = file.name;
     this.children = file.children;
     this.parent = file.parent;
+    this.icon = file.icon;
     this.ln = file.ln;
+    this.textColor = file.textColor;
   }
 
   url() {
@@ -40,13 +47,95 @@ export const MCDEV = new File({ name: 'mcdev', parent: HOME });
 HOME.children = [MCDEV];
 
 const SKILLS = new File({ name: 'skills', parent: MCDEV, children: [] });
-const TEST = new File({ name: 'test', parent: MCDEV });
+const CONTACT = new File({
+  name: 'contact',
+  parent: MCDEV,
+  ln: 'contact.me',
+});
 const CURRICULUM = new File({
   name: 'curriculum',
   parent: MCDEV,
   ln: 'curriculum.app',
 });
-MCDEV.children = [SKILLS, TEST, CURRICULUM];
+MCDEV.children = [CURRICULUM, SKILLS, CONTACT];
+
+const SKILL_LIST = [
+  new File({
+    name: 'HTML5',
+    icon: process.env.PUBLIC_URL + '/html5.png',
+    textColor: shellColors.red,
+  }),
+  new File({
+    name: 'CSS3',
+    icon: process.env.PUBLIC_URL + '/css.png',
+    textColor: shellColors.blue,
+  }),
+  new File({
+    name: 'JavaScript',
+    icon: process.env.PUBLIC_URL + '/js.png',
+    textColor: shellColors.yellow,
+  }),
+  new File({
+    name: 'Node',
+    icon: process.env.PUBLIC_URL + '/node.png',
+    textColor: shellColors.green,
+  }),
+  new File({
+    name: 'React',
+    icon: process.env.PUBLIC_URL + '/react.png',
+    textColor: shellColors.blue,
+  }),
+  new File({
+    name: 'React Native',
+    icon: process.env.PUBLIC_URL + '/react_native.png',
+    textColor: shellColors.green,
+  }),
+  new File({
+    name: 'GraphQL',
+    icon: process.env.PUBLIC_URL + '/graphql.png',
+    textColor: '#ff82ff',
+  }),
+  new File({
+    name: 'Angular',
+    icon: process.env.PUBLIC_URL + '/angular.png',
+    textColor: shellColors.red,
+  }),
+  new File({
+    name: 'Vue',
+    icon: process.env.PUBLIC_URL + '/vue.png',
+    textColor: shellColors.green,
+  }),
+  new File({
+    name: 'Svelt',
+    icon: process.env.PUBLIC_URL + '/svelt.png',
+  }),
+  new File({
+    name: 'Dart',
+    icon: process.env.PUBLIC_URL + '/dart.png',
+    textColor: shellColors.blue,
+  }),
+  new File({
+    name: 'Flutter',
+    icon: process.env.PUBLIC_URL + '/flutter.png',
+    textColor: shellColors.blue,
+  }),
+  new File({
+    name: 'Python',
+    icon: process.env.PUBLIC_URL + '/python.png',
+    textColor: shellColors.yellow,
+  }),
+  new File({
+    name: 'Java',
+    icon: process.env.PUBLIC_URL + '/java.png',
+    textColor: shellColors.red,
+  }),
+  new File({
+    name: 'Spring',
+    icon: process.env.PUBLIC_URL + '/spring.png',
+    textColor: shellColors.green,
+  }),
+];
+SKILLS.children = SKILL_LIST;
 
 export const listDirs = (f: File): string[] => {
   if (!f.children) return [];

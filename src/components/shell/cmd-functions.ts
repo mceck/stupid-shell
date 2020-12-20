@@ -8,7 +8,15 @@ export interface CmdReturn {
   sep?: Separator;
 }
 
-export type CmdFn = 'cd' | 'ls' | 'echo' | './' | 'clear' | 'curriculum.app';
+export type CmdFn =
+  | 'cd'
+  | 'ls'
+  | 'echo'
+  | './'
+  | 'clear'
+  | 'curriculum.app'
+  | 'help'
+  | 'contact.me';
 
 export const CMD_EXEC: Map<
   CmdFn,
@@ -35,26 +43,35 @@ CMD_EXEC.set('cd', (shell: IShell, params?: string[]) => {
 });
 
 CMD_EXEC.set('ls', (shell: IShell, params?: string[]) => {
-  if (!shell.path.children)
+  let path = shell.path;
+  if (params && params.length === 1) {
+    path = resolvePath(params[0].replaceAll('~', MCDEV.url()), shell.path);
+    if (!path) path = shell.path;
+  }
+  if (!path.children)
     return {
       result: null,
     };
-  if (shell.path.children.length === 0)
+  if (path.children.length === 0)
     return {
       result: {
         cmd: [{ text: 'empty dir' }],
       },
     };
+
   return {
     result: {
-      cmd: shell.path.children.map((f) => {
+      cmd: path.children.map((f) => {
         return {
           text: f.name,
-          color: f.children
-            ? shellColors.green
-            : f.ln
-            ? shellColors.blue
-            : shellColors.white,
+          icon: f.icon,
+          color:
+            f.textColor ||
+            (f.children
+              ? shellColors.green
+              : f.ln
+              ? shellColors.blue
+              : shellColors.white),
         };
       }),
     },
@@ -95,6 +112,9 @@ CMD_EXEC.set('curriculum.app', (shell: IShell, params?: string[]) => {
     result: {
       cmd: [
         {
+          text: '-----',
+        },
+        {
           text: 'Curriculum Vitae',
           color: shellColors.blue,
         },
@@ -105,14 +125,66 @@ CMD_EXEC.set('curriculum.app', (shell: IShell, params?: string[]) => {
         {
           text: 'TODO - complete',
         },
+        {
+          text: '-----',
+        },
       ],
     },
   };
 });
 
-CMD_EXEC.set('clear', (shell: IShell, params?: string[]) => {
-  shell.clear!();
+CMD_EXEC.set('contact.me', (shell: IShell, params?: string[]) => {
   return {
-    result: null,
+    result: {
+      cmd: [
+        {
+          text: 'Contact Form - to be implemented',
+          color: shellColors.green,
+        },
+      ],
+    },
+  };
+});
+
+CMD_EXEC.set('help', (shell: IShell, params?: string[]) => {
+  return {
+    result: {
+      cmd: [
+        {
+          text: '-----',
+        },
+        {
+          text: 'Commands:',
+          color: shellColors.blue,
+        },
+        {
+          text: 'cd [dir]: change directory',
+        },
+        {
+          text: 'ls [dir]: list files in directory',
+        },
+        {
+          text: 'clear: clear the console',
+        },
+        {
+          text: 'echo [text]: print [text]',
+        },
+        {
+          text: 'curriculum.app: show Curriculum Vitae',
+        },
+        {
+          text: 'constact.me: Contact form',
+        },
+        {
+          text: './[link]: run command link',
+        },
+        {
+          text: 'help: print help text',
+        },
+        {
+          text: '-----',
+        },
+      ],
+    },
   };
 });

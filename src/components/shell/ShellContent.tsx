@@ -83,7 +83,7 @@ export const ShellContent = () => {
   return (
     <ShellLines ref={shell.scroller} onClick={shell.focusCmdInput}>
       {shell.lines.map((l, i) => (
-        <div key={i}>
+        <div key={`line${i}`}>
           {l.path && (
             <Url>
               {l.path.url()}
@@ -92,11 +92,11 @@ export const ShellContent = () => {
           )}
           {l.cmd.map((c, idx) => (
             <Cmd
-              key={c.text}
+              key={`cmd${idx}`}
               color={c.color}
               style={l.path && idx === 0 ? {} : { display: 'block' }}
             >
-              {c.text}
+              {c.icon && <ShellIco src={c.icon} />} {c.text}
             </Cmd>
           ))}
         </div>
@@ -135,6 +135,12 @@ const ShellLines = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   cursor: text;
+`;
+
+const ShellIco = styled.img`
+  width: 11px;
+  height: 11px;
+  vertical-align: middle;
 `;
 
 const Cmd = styled.span`
