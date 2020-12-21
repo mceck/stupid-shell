@@ -24,8 +24,6 @@ export interface ILine {
 
 export interface IShell {
   lines: ILine[];
-  x: number;
-  y: number;
   path: File;
   sep: Separator;
   historyMarker?: number;
@@ -37,6 +35,7 @@ export interface IShell {
   setHistoryMarker?: (marker?: number) => void;
   scroller?: React.MutableRefObject<any>;
   cmdInput?: React.MutableRefObject<any>;
+  customForm?: React.ReactNode;
 }
 
 export const initialShellState: IShell = {
@@ -52,8 +51,6 @@ export const initialShellState: IShell = {
       ],
     },
   ],
-  x: 50,
-  y: 50,
   path: MCDEV,
   sep: '$',
 };
@@ -83,7 +80,9 @@ export const ShellProvider: React.FC = ({ children }) => {
   const scrollBottom = useCallback(() => {
     if (scroller.current)
       setTimeout(
-        () => scroller.current.scrollTo(0, scroller.current.scrollHeight),
+        () =>
+          scroller.current &&
+          scroller.current.scrollTo(0, scroller.current.scrollHeight),
         1
       );
   }, [scroller]);
@@ -93,9 +92,11 @@ export const ShellProvider: React.FC = ({ children }) => {
   }, [cmdInput]);
 
   const pushCmd = useCallback(
-    (cmdLine: string) => {
+    (cmdLine: string, customForm?: React.ReactNode) => {
       const cmds = cmdLine.split(' && ');
-      cmds.forEach((cmd) => dispatch({ type: 'push-cmd', payload: cmd }));
+      cmds.forEach((cmd) =>
+        dispatch({ type: 'push-cmd', payload: { cmd, customForm } })
+      );
       scrollBottom();
     },
     [dispatch, scrollBottom]

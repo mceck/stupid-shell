@@ -10,14 +10,11 @@ export interface ShellAction {
 export const shellReducer = (state: IShell, action: ShellAction) => {
   const newState = { ...state };
   switch (action.type) {
-    case 'move-frame':
-      newState.x += action.payload.x;
-      newState.y += action.payload.y;
-      break;
     case 'push-cmd':
-      const cmd = action.payload;
+      const cmd = action.payload.cmd.trim();
       newState.historyMarker = undefined;
-      if (cmd.trim() === 'clear') {
+      newState.customForm = undefined;
+      if (cmd === 'clear') {
         newState.lines = [];
         break;
       }
@@ -29,8 +26,11 @@ export const shellReducer = (state: IShell, action: ShellAction) => {
           sep: state.sep,
         },
       ];
-      const { result, path, sep } = executeCmd(state, cmd);
-
+      const { result, path, sep, customForm } = executeCmd(state, cmd);
+      if (customForm) {
+        newState.customForm = customForm;
+        break;
+      }
       if (result) newState.lines = [...newState.lines, result];
       if (path) newState.path = path;
       if (sep) newState.sep = sep;

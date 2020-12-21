@@ -1,3 +1,5 @@
+import React from 'react';
+import { ContactForm } from './contact-form/ContactForm';
 import { File, MCDEV, resolvePath } from './file-system';
 import { ILine, IShell, Separator } from './provider';
 import { shellColors } from './shell-colors';
@@ -6,6 +8,7 @@ export interface CmdReturn {
   result: ILine | null;
   path?: File;
   sep?: Separator;
+  customForm?: React.ReactNode;
 }
 
 export type CmdFn =
@@ -92,8 +95,6 @@ CMD_EXEC.set('echo', (shell: IShell, params?: string[]) => {
 });
 
 CMD_EXEC.set('./', (shell: IShell, params?: string[]) => {
-  console.log(params);
-
   if (!params || params.length === 0)
     throw new Error('sh-mcdev: no such file or directory: ./');
   const prg = params[0];
@@ -135,14 +136,8 @@ CMD_EXEC.set('curriculum.app', (shell: IShell, params?: string[]) => {
 
 CMD_EXEC.set('contact.me', (shell: IShell, params?: string[]) => {
   return {
-    result: {
-      cmd: [
-        {
-          text: 'Contact Form - to be implemented',
-          color: shellColors.green,
-        },
-      ],
-    },
+    result: null,
+    customForm: <ContactForm />,
   };
 });
 
@@ -173,7 +168,7 @@ CMD_EXEC.set('help', (shell: IShell, params?: string[]) => {
           text: 'curriculum.app: show Curriculum Vitae',
         },
         {
-          text: 'constact.me: Contact form',
+          text: 'contact.me: Contact form',
         },
         {
           text: './[link]: run command link',

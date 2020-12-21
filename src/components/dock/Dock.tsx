@@ -45,13 +45,6 @@ const DockFrame = styled.div`
   padding: 10px;
   padding-right: 0;
   z-index: 10;
-
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 `;
 
 const DockIcon: React.FC<{

@@ -1,51 +1,27 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useShell } from './provider';
 
-export const StatusBar = () => {
-  const shell = useShell();
-  const [dragging, setDragging] = useState(false);
-  const onMouseUp = useCallback(() => setDragging(false), [setDragging]);
-  const onMouseMove = useCallback(
-    (e) => {
-      if (dragging) {
-        shell.moveFrame!({
-          x: e.movementX,
-          y: e.movementY,
-        });
-      }
-    },
-    [shell, dragging]
-  );
-
-  useEffect(() => {
-    window.addEventListener('mouseup', onMouseUp);
-    return () => {
-      window.removeEventListener('mouseup', onMouseUp);
-    };
-  }, [onMouseUp]);
-
-  useEffect(() => {
-    window.addEventListener('mousemove', onMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-    };
-  }, [onMouseMove]);
-
+export const StatusBar: React.FC<{
+  title: string;
+  startDrag: (v?: boolean) => void;
+  onClose: () => void;
+  onMinimize: () => void;
+  onMaximize: () => void;
+}> = ({ title, startDrag, onClose, onMinimize, onMaximize }) => {
   return (
     <StatusBarFrame
       onMouseDown={(e) => {
         if (e.button !== 0) return;
         e.preventDefault();
-        setDragging(true);
+        startDrag(true);
       }}
     >
       <ActionContainer>
-        <CloseIcon onClick={() => shell.pushCmd!('close')} />
-        <MinimizeIcon onClick={() => shell.pushCmd!('minimize')} />
-        <FullscreenIcon onClick={() => shell.pushCmd!('maximize')} />
+        <CloseIcon onClick={onClose} />
+        <MinimizeIcon onClick={onMinimize} />
+        <FullscreenIcon onClick={onMaximize} />
       </ActionContainer>
-      <Title>Terminale - mcdev@web.mcdev.host</Title>
+      <Title>{title}</Title>
     </StatusBarFrame>
   );
 };
@@ -147,6 +123,7 @@ const FullscreenIcon = styled(Icon)`
 const Title = styled.p`
   color: #cdcdcd;
   font-family: SFRegular !important;
+  font-size: 0.75rem;
   font-weight: bold;
   padding-left: 10px;
 `;
