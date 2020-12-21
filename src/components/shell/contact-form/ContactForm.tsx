@@ -35,7 +35,7 @@ export const ContactForm = () => {
   if (finish)
     return (
       <div>
-        <p>Thank you! 🤟</p>
+        <p>🤟 Thank you! 🤟</p>
         <ShellButton onClick={() => shell.pushCmd!('clear')}>
           GO BACK
         </ShellButton>
@@ -43,23 +43,25 @@ export const ContactForm = () => {
     );
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <p>Contact me!</p>
-      <ShellLabel htmlFor="email">Email: </ShellLabel>
-      <ShellInput
-        name="email"
-        error={errors['email']}
-        ref={register({ required: true, pattern: EMAIL_REGEX })}
-      />
-      <FormErr>{errors['email']?.type}</FormErr>
-      <br />
-      <ShellLabel htmlFor="message">Message: </ShellLabel>
-      <ShellTextarea
-        name="message"
-        error={errors['message']}
-        ref={register({ required: true })}
-      />
-      <FormErr>{errors['message']?.type}</FormErr>
-      <br />
+      <p>Contact me! ❤️</p>
+      <FormGroup>
+        <ShellLabel htmlFor="email">Email: </ShellLabel>
+        <ShellInput
+          name="email"
+          error={errors['email']}
+          ref={register({ required: true, pattern: EMAIL_REGEX })}
+        />
+        <FormErr>{errors['email']?.type}</FormErr>
+      </FormGroup>
+      <FormGroup>
+        <ShellLabel htmlFor="message">Message: </ShellLabel>
+        <ShellTextarea
+          name="message"
+          error={errors['message']}
+          ref={register({ required: true })}
+        />
+        <FormErr>{errors['message']?.type}</FormErr>
+      </FormGroup>
       <ShellButton type="submit" disabled={isSubmitting}>
         SEND MESSAGE
       </ShellButton>
@@ -77,6 +79,27 @@ const FormErr = styled.span`
 const ShellLabel = styled.label`
   display: block;
   margin-top: 20px;
+  color: #dedede;
+`;
+
+const FormGroup = styled.div`
+  :hover {
+    input,
+    textarea {
+      border-color: #ffffff;
+    }
+    label {
+      color: #ffffff;
+    }
+  }
+
+  input,
+  textarea {
+    :focus,
+    :active {
+      border-color: #ffffff;
+    }
+  }
 `;
 
 const ShellInput = styled.input<{ error: boolean }>`
@@ -85,11 +108,11 @@ const ShellInput = styled.input<{ error: boolean }>`
   border: none;
   background: none;
   outline: none;
-  color: #ffffff;
+  color: #eaeaea;
   font-size: 0.75rem;
   font-weight: 700;
   border-bottom: 2px solid
-    ${({ error }) => (error ? shellColors.red : shellColors.white)};
+    ${({ error }) => (error ? shellColors.red : '#dedede')};
 `;
 
 const ShellTextarea = styled.textarea<{ error: boolean }>`
@@ -98,11 +121,11 @@ const ShellTextarea = styled.textarea<{ error: boolean }>`
   border: none;
   background: none;
   outline: none;
-  color: #ffffff;
+  color: #eaeaea;
   font-size: 0.75rem;
   font-weight: 700;
   border-bottom: 2px solid
-    ${({ error }) => (error ? shellColors.red : shellColors.white)};
+    ${({ error }) => (error ? shellColors.red : '#dedede')};
 `;
 
 const ShellButton = styled.button`
@@ -112,7 +135,7 @@ const ShellButton = styled.button`
   outline: none;
   background-color: #eaeaea;
   color: #1f1e1e;
-
+  cursor: pointer;
   :not(:disabled):hover {
     background-color: #ffffff;
   }
