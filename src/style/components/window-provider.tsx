@@ -41,7 +41,6 @@ export const WindowProvider: React.FC = ({ children }) => {
   const openWindow = useCallback(
     (window: Partial<IWnd>) => {
       if (isOpen(window.id!)) {
-        // TODO porta in primo piano
         setSelectedId(window.id!);
         return;
       }
@@ -50,6 +49,7 @@ export const WindowProvider: React.FC = ({ children }) => {
       };
       const onMinimize = () => {
         // TODO implement
+        setWindows(windows.filter((w) => w.id !== window.id));
       };
       const onMaximize = () => {
         // TODO implement

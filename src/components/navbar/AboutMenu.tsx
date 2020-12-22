@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import profile from '../../style/profile.png';
 
 export const AboutMenu = () => {
   return (
@@ -29,7 +28,7 @@ export const AboutMenu = () => {
 };
 
 const ProfileImg = () => {
-  return <ProfileImgEl src={profile} />;
+  return <ProfileImgEl src={process.env.PUBLIC_URL + '/profile.jpg'} />;
 };
 
 const ProfileImgEl = styled.img`

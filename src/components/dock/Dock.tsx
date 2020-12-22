@@ -30,7 +30,7 @@ export const Dock = () => {
             child: (
               <VSCode githubUrl="https://api.github.com/repos/facebook/react" />
             ),
-            title: 'Code',
+            title: 'Code - https://api.github.com/repos/facebook/react',
             initX: 100,
             initY: 100,
             initWidth: 800,
