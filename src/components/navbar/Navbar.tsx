@@ -47,7 +47,7 @@ const NavbarFrame = styled.div`
   font-size: 0.82rem;
   display: flex;
   align-items: center;
-  z-index: 10;
+  z-index: 100;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

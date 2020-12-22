@@ -3,14 +3,17 @@ import { Dock } from './components/dock/Dock';
 import { Navbar } from './components/navbar/Navbar';
 import { ShellProvider } from './components/shell/provider';
 import { Shell } from './components/shell/Shell';
+import { WindowProvider } from './style/components/window-provider';
 
 function App() {
   return (
-    <ShellProvider>
-      <Navbar />
-      <Shell />
-      <Dock />
-    </ShellProvider>
+    <WindowProvider>
+      <ShellProvider>
+        <Navbar />
+        <Shell />
+        <Dock />
+      </ShellProvider>
+    </WindowProvider>
   );
 }
 

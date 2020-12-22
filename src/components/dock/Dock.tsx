@@ -1,16 +1,39 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useWindow } from '../../style/components/window-provider';
 import { useShell } from '../shell/provider';
+import { VSCode } from '../vscode/VSCode';
 import { ROUTES } from './routes';
 
 export const Dock = () => {
   const shell = useShell();
+  const window = useWindow();
   const [clicked, setClicked] = useState<boolean[]>(() =>
     ROUTES.map((_) => false)
   );
 
+  const [vsclick, setVsclick] = useState<boolean>(false);
+
   return (
     <DockFrame>
+      <DockIcon
+        label="Visual Studio Code"
+        icon={process.env.PUBLIC_URL + '/vscode.png'}
+        clicked={vsclick}
+        onMouseEvent={(event: React.MouseEvent) => {
+          setVsclick(event.type === 'mousedown');
+        }}
+        isOpen={window.isOpen('vscode')}
+        onClick={() =>
+          window.openWindow({
+            id: 'vscode',
+            child: <VSCode />,
+            title: 'Code',
+            initX: 100,
+            initY: 100,
+          })
+        }
+      />
       {ROUTES.map((ic, i) => (
         <DockIcon
           key={i}
@@ -44,16 +67,17 @@ const DockFrame = styled.div`
   backdrop-filter: blur(35px);
   padding: 10px;
   padding-right: 0;
-  z-index: 10;
+  z-index: 100;
 `;
 
 const DockIcon: React.FC<{
   label: string;
   icon: string;
   clicked?: boolean;
+  isOpen?: boolean;
   onMouseEvent: (event: React.MouseEvent) => void;
   onClick: (event: React.MouseEvent) => void;
-}> = ({ onMouseEvent, ...props }) => {
+}> = ({ onMouseEvent, isOpen, ...props }) => {
   return (
     <DockIconDiv
       {...props}
@@ -62,9 +86,22 @@ const DockIcon: React.FC<{
       onMouseUp={onMouseEvent}
     >
       <div className="overlay-click" />
+      {isOpen && <OpenMarker />}
     </DockIconDiv>
   );
 };
+
+const OpenMarker = styled.div`
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #fefefe;
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 2px rgba(255, 255, 255, 0.75);
+`;
 
 const DockIconDiv = styled.div<{
   label: string;

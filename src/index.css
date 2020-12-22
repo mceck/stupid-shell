@@ -1,14 +1,14 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: SFRegular, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
 }
 
 body,
 html {
+  font-family: SFRegular, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   display: flex;
   width: 100vw;
   height: 100vh;

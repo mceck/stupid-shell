@@ -2,16 +2,7 @@ import React, { useEffect, useReducer } from 'react';
 import styled from 'styled-components';
 import { StatusBar } from './StatusBar';
 
-export const Window: React.FC<{
-  title: string;
-  onClose: () => void;
-  onMinimize: () => void;
-  onMaximize: () => void;
-  initX?: number;
-  initY?: number;
-  initWidth?: number;
-  initHeight?: number;
-}> = ({
+export const Window: React.FC<any> = ({
   children,
   title,
   onClose,
@@ -21,6 +12,8 @@ export const Window: React.FC<{
   initY,
   initWidth,
   initHeight,
+  index,
+  ...props
 }) => {
   const [wdw, dispatch] = useReducer<React.Reducer<IWindow, ResizeAction>>(
     resizeReducer,
@@ -131,7 +124,7 @@ export const Window: React.FC<{
   }, [dispatch, wdw.moving]);
 
   return (
-    <WindowFrame style={{ left: wdw.x, top: wdw.y }}>
+    <WindowFrame {...props} style={{ left: wdw.x, top: wdw.y, zIndex: index }}>
       <RelPanel style={{ width: wdw.width, height: wdw.height }}>
         <StatusBar
           title={title}

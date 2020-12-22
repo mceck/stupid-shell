@@ -19,7 +19,10 @@ export type CmdFn =
   | 'clear'
   | 'curriculum.app'
   | 'help'
-  | 'contact.me';
+  | 'contact.me'
+  | 'exit'
+  | 'minimize'
+  | 'maximize';
 
 export const CMD_EXEC: Map<
   CmdFn,
@@ -138,6 +141,14 @@ CMD_EXEC.set('contact.me', (shell: IShell, params?: string[]) => {
   return {
     result: null,
     customForm: <ContactForm />,
+  };
+});
+
+CMD_EXEC.set('exit', (shell: IShell, params?: string[]) => {
+  return {
+    result: {
+      cmd: [{ text: 'Cant close this window!', color: shellColors.red }],
+    },
   };
 });
 
