@@ -21,7 +21,6 @@ export const VSCode: React.FC<{ githubUrl: string }> = ({ githubUrl }) => {
 
 const VSEditor = () => {
   const vscode = useVSCode();
-  console.log(vscode.editorContent);
 
   return (
     <ControlledEditor

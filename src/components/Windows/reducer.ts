@@ -36,5 +36,9 @@ export const resizeReducer = (state: IWindow, action: ResizeAction) => {
     default:
       break;
   }
+
+  if (newState.width < 100) newState.width = 100;
+  if (newState.height < 100) newState.height = 100;
+
   return newState;
 };

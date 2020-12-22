@@ -31,6 +31,34 @@ export const STATIC_REPO: ITreeNode = {
           url:
             'https://raw.githubusercontent.com/storybookjs/storybook/next/lib/cli/src/typings.d.ts',
         },
+        {
+          id: '5',
+          path: 'sub2',
+          type: 'tree',
+          children: [
+            {
+              id: '6',
+              path: 'subtest2.jsx',
+              type: 'blob',
+              url:
+                'https://raw.githubusercontent.com/storybookjs/storybook/next/lib/client-api/src/hooks.ts',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: '7',
+      path: 'sub02',
+      type: 'tree',
+      children: [
+        {
+          id: '8',
+          path: 'subtest02.ts',
+          type: 'blob',
+          url:
+            'https://raw.githubusercontent.com/storybookjs/storybook/next/lib/client-api/src/index.ts',
+        },
       ],
     },
   ],

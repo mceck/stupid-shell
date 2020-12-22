@@ -12,7 +12,7 @@ export const Shell = () => {
       title="Terminale - mcdev@web.mcdev.host"
       onClose={() => shell.pushCmd!('exit')}
       onMinimize={() => shell.pushCmd!('minimize')}
-      onMaximize={() => shell.pushCmd!('maximize')}
+      // onMaximize={() => shell.pushCmd!('maximize')}
       index={5}
     >
       <ShellFrame>{shell.customForm || <ShellContent />}</ShellFrame>

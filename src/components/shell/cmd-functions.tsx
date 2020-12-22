@@ -141,6 +141,14 @@ CMD_EXEC.set('exit', () => {
   };
 });
 
+CMD_EXEC.set('minimize', () => {
+  return {
+    result: {
+      cmd: [{ text: 'Cant minimize this window!', color: shellColors.red }],
+    },
+  };
+});
+
 CMD_EXEC.set('help', () => {
   return {
     result: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { SidebarFrame, SideHeader, FileNode } from './styles';
+import { SidebarFrame, SideHeader, FileNode, Scrollable } from './styles';
 import { ITreeNode } from './types';
 import { useVSCode } from './vscode-provider';
 import { VSFileIcon } from './VSFileIcon';
@@ -8,8 +8,10 @@ export const VSSidebar = () => {
   const vscode = useVSCode();
   return (
     <SidebarFrame>
-      <SideHeader>Project</SideHeader>
-      <NodeRender tree={vscode.repo.tree} />
+      <Scrollable horizontal vertical>
+        <SideHeader>Project</SideHeader>
+        <NodeRender tree={vscode.repo.tree} />
+      </Scrollable>
     </SidebarFrame>
   );
 };
@@ -26,7 +28,13 @@ const NodeRender: React.FC<{ tree: ITreeNode; padLeft?: number }> = ({
         if (n.type === 'tree')
           return (
             <div key={n.id}>
-              <div style={{ paddingLeft: padLeft || 2 }}>
+              <div
+                style={{
+                  paddingLeft: padLeft || 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
                 <VSFileIcon name={n.path} />
                 {n.path}
               </div>

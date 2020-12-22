@@ -29,7 +29,7 @@ export const SidebarFrame = styled.div`
   width: 30%;
   background-color: #282828;
   overflow: auto;
-  color: #ffffff;
+  color: #dedede;
   padding-top: 28px;
   position: relative;
   font-size: 0.9rem;
@@ -56,6 +56,8 @@ export const FileNode = styled.div<{ active?: boolean; padLeft?: number }>`
     background-color: #454545;
   }
   transition: all ease 100ms;
+  display: flex;
+  align-items: center;
 `;
 
 export const TabFrame = styled.div`
@@ -68,11 +70,37 @@ export const TabFrame = styled.div`
   font-size: 0.9rem;
 `;
 
+export const Scrollable = styled.div<{
+  horizontal?: boolean;
+  vertical?: boolean;
+}>`
+  overflow-x: ${({ horizontal }) => (horizontal ? 'auto' : 'hidden')};
+  overflow-y: ${({ vertical }) => (vertical ? 'auto' : 'hidden')};
+  ${({ horizontal }) => (horizontal ? 'width: 100%;' : '')}
+  ${({ vertical }) => (vertical ? 'height: 100%;' : '')}
+
+  ::-webkit-scrollbar {
+    height: 3px;
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #101010;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #202020;
+  }
+`;
+
 export const Tab = styled.div<{ active?: boolean }>`
+  display: flex;
+  align-items: center;
   cursor: pointer;
   padding: 5px 10px;
   ${({ active }) =>
-    active ? 'background-color: #202124; color: #ffffff;' : ''}
+    active ? 'background-color: #202124; color: #efefef;' : ''}
 `;
 
 export const CloseBtn = styled.span`
@@ -81,7 +109,7 @@ export const CloseBtn = styled.span`
   padding-right: 0;
   color: #aeaeae;
   :hover {
-    color: #ffffff;
+    color: #efefef;
   }
 `;
 

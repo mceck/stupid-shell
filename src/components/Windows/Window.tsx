@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from 'react';
-import styled from 'styled-components';
 import { resizeReducer } from './reducer';
 import { StatusBar } from './StatusBar';
+import { WindowFrame, RelPanel, Resizer, ResizeAngle } from './styles';
 import { IWindow, ResizeAction } from './types';
 
 export const Window: React.FC<any> = ({
@@ -196,53 +196,3 @@ export const Window: React.FC<any> = ({
     </WindowFrame>
   );
 };
-
-const WindowFrame = styled.div`
-  position: fixed;
-  border-radius: 10px;
-  border: solid 1px #616161;
-  box-shadow: inset 0px 0px 6px rgba(90, 90, 90, 0.5);
-  overflow: hidden;
-`;
-
-const RelPanel = styled.div`
-  position: relative;
-  padding-top: 26px;
-`;
-
-const Resizer = styled.div<{
-  top?: boolean;
-  bottom?: boolean;
-  left?: boolean;
-  right?: boolean;
-}>`
-  position: absolute;
-  cursor: ${({ top, bottom }) => (top || bottom ? 'ns-resize' : 'ew-resize')};
-  width: ${({ top, bottom }) => (top || bottom ? '100%' : '4px')};
-  height: ${({ left, right }) => (left || right ? '100%' : '4px')};
-
-  ${({ left, top }) => (left || top ? 'top: 0; left: 0;' : '')}
-  ${({ right }) => (right ? 'top: 0; right: 0;' : '')}
-  ${({ bottom }) => (bottom ? 'bottom: 0; left: 0;' : '')}
-`;
-
-const ResizeAngle = styled.div<{
-  nw?: boolean;
-  ne?: boolean;
-  se?: boolean;
-  sw?: boolean;
-}>`
-  position: absolute;
-  cursor: ${({ nw, se }) => (nw || se ? 'nwse-resize' : 'nesw-resize')};
-  width: 5px;
-  height: 5px;
-
-  ${({ nw, ne, se }) =>
-    nw
-      ? 'top: 0; left: 0;'
-      : ne
-      ? 'top: 0; right: 0;'
-      : se
-      ? 'bottom: 0; right: 0;'
-      : 'bottom: 0; left: 0;'}
-`;
