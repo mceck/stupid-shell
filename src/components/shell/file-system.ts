@@ -1,42 +1,5 @@
-import { CmdFn } from './cmd-functions';
 import { shellColors } from './shell-colors';
-
-export interface IFile {
-  name: string;
-  children?: File[];
-  parent?: File;
-  icon?: string;
-  ln?: CmdFn;
-  textColor?: string;
-}
-
-export class File implements IFile {
-  name: string;
-  children?: File[];
-  parent?: File;
-  icon?: string;
-  ln?: CmdFn;
-  textColor?: string;
-
-  constructor(file: IFile) {
-    this.name = file.name;
-    this.children = file.children;
-    this.parent = file.parent;
-    this.icon = file.icon;
-    this.ln = file.ln;
-    this.textColor = file.textColor;
-  }
-
-  url() {
-    let str = this.name || '/';
-    let par = this.parent;
-    while (par) {
-      str = `${par.name}/${str}`;
-      par = par.parent;
-    }
-    return str;
-  }
-}
+import { File } from './types';
 
 export const ROOT = new File({ name: '' });
 

@@ -1,23 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { IWnd, IWndActions } from './types';
 import { Window } from './Window';
-
-export interface IWnd {
-  id: string;
-  child: React.ReactNode;
-  onClose: () => void;
-  onMinimize: () => void;
-  onMaximize: () => void;
-  title: string;
-  initX?: number;
-  initY?: number;
-  initWidth?: number;
-  initHeight?: number;
-}
-
-export interface IWndActions {
-  openWindow: (window: Partial<IWnd>) => void;
-  isOpen: (id: string) => boolean;
-}
 
 const initState: IWndActions = { openWindow(_) {}, isOpen: (_) => false };
 

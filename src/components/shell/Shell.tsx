@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useShell } from './provider';
 import { ShellContent } from './ShellContent';
-import { Window } from '../../style/components/Window';
+import { Window } from '../Windows/Window';
+import { ShellFrame } from './styles';
 
 export const Shell = () => {
   const shell = useShell();
@@ -19,18 +19,3 @@ export const Shell = () => {
     </Window>
   );
 };
-
-const ShellFrame = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 5px;
-  background-color: #1f1e1e;
-  color: white;
-  font-size: 0.75rem;
-  font-weight: 700;
-
-  & * {
-    font-family: SFmono;
-  }
-  /* transform: translate(-50%, -100%); */
-`;

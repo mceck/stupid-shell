@@ -1,9 +1,9 @@
 import React from 'react';
 import { ControlledEditor } from '@monaco-editor/react';
-import styled from 'styled-components';
 import { VSSidebar } from './VSSidebar';
 import { VSTabBar } from './VSTabBar';
 import { useVSCode, VSCodeProvider } from './vscode-provider';
+import { VSCodeFrame, Expanded, LoadingBox } from './styles';
 
 export const VSCode: React.FC<{ githubUrl: string }> = ({ githubUrl }) => {
   return (
@@ -29,35 +29,12 @@ const VSEditor = () => {
       theme="dark"
       options={{ fontSize: 14, fontFamily: 'SFMono' }}
       loading={
-        <LoadingBox style={{ color: '#dedede' }}>
-          <img src={process.env.PUBLIC_URL + '/vscode.png'} /> Loading...
+        <LoadingBox>
+          <img src={process.env.PUBLIC_URL + '/vscode.png'} alt="vsicon" />{' '}
+          Loading...
         </LoadingBox>
       }
       value={vscode.editorContent}
     />
   );
 };
-
-const VSCodeFrame = styled.div`
-  background-color: #202124;
-  width: 100%;
-  height: 100%;
-  display: flex;
-`;
-
-const Expanded = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-const LoadingBox = styled.div`
-  display: flex;
-  align-items: center;
-  color: #dedede;
-
-  img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-  }
-`;

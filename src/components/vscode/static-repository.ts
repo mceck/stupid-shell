@@ -1,4 +1,4 @@
-import { ITreeNode } from './vscode-provider';
+import { ITreeNode } from './types';
 
 export const STATIC_REPO: ITreeNode = {
   path: '/',

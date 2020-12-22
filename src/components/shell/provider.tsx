@@ -5,39 +5,9 @@ import React, {
   useReducer,
   useRef,
 } from 'react';
-import { File, MCDEV } from './file-system';
-import { ShellAction, shellReducer } from './reducer';
-
-export type Separator = '$' | '#';
-
-export interface ISpan {
-  text: string;
-  icon?: string;
-  color?: string;
-  link?: string;
-}
-
-export interface ILine {
-  cmd: ISpan[];
-  path?: File;
-  sep?: Separator;
-}
-
-export interface IShell {
-  lines: ILine[];
-  path: File;
-  sep: Separator;
-  historyMarker?: number;
-  pushCmd?: (cmd: string) => void;
-  moveFrame?: (mov: { x: number; y: number }) => void;
-  scrollBottom?: () => void;
-  focusCmdInput?: () => void;
-  clear?: () => void;
-  setHistoryMarker?: (marker?: number) => void;
-  scroller?: React.MutableRefObject<any>;
-  cmdInput?: React.MutableRefObject<any>;
-  customForm?: React.ReactNode;
-}
+import { MCDEV } from './file-system';
+import { shellReducer } from './reducer';
+import { IShell, ShellAction } from './types';
 
 export const initialShellState: IShell = {
   lines: [

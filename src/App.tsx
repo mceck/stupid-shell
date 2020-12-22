@@ -3,7 +3,7 @@ import { Dock } from './components/dock/Dock';
 import { Navbar } from './components/navbar/Navbar';
 import { ShellProvider } from './components/shell/provider';
 import { Shell } from './components/shell/Shell';
-import { WindowProvider } from './style/components/window-provider';
+import { WindowProvider } from './components/Windows/window-provider';
 
 function App() {
   return (

@@ -1,6 +1,8 @@
 import React, { useEffect, useReducer } from 'react';
 import styled from 'styled-components';
+import { resizeReducer } from './reducer';
 import { StatusBar } from './StatusBar';
+import { IWindow, ResizeAction } from './types';
 
 export const Window: React.FC<any> = ({
   children,
@@ -244,73 +246,3 @@ const ResizeAngle = styled.div<{
       ? 'bottom: 0; right: 0;'
       : 'bottom: 0; left: 0;'}
 `;
-
-const resizeReducer = (state: IWindow, action: ResizeAction) => {
-  const newState = { ...state };
-  switch (action.type) {
-    case 'height':
-      newState.height = action.payload;
-      break;
-    case 'width':
-      newState.width = action.payload;
-      break;
-    case 'resize':
-      if (action.payload.height) newState.height += action.payload.height;
-      if (action.payload.width) newState.width += action.payload.width;
-      break;
-    case 'res-move':
-      if (action.payload.height) newState.height += action.payload.height;
-      if (action.payload.width) newState.width += action.payload.width;
-      if (action.payload.x) newState.x += action.payload.x;
-      if (action.payload.y) newState.y += action.payload.y;
-      break;
-    case 'move':
-      newState.x += action.payload.x;
-      newState.y += action.payload.y;
-      break;
-    case 'start-resize':
-      newState.resizing = action.payload;
-      break;
-    case 'start-move':
-      newState.moving = true;
-      break;
-    case 'mouseup':
-      newState.moving = false;
-      newState.resizing = null;
-      break;
-    default:
-      break;
-  }
-  return newState;
-};
-
-interface ResizeAction {
-  type:
-    | 'width'
-    | 'height'
-    | 'resize'
-    | 'start-resize'
-    | 'start-move'
-    | 'move'
-    | 'res-move'
-    | 'mouseup';
-  payload?: any;
-}
-
-interface IWindow {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  resizing:
-    | 'top'
-    | 'bottom'
-    | 'left'
-    | 'right'
-    | 'ne'
-    | 'nw'
-    | 'sw'
-    | 'se'
-    | null;
-  moving: boolean;
-}

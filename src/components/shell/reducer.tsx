@@ -1,11 +1,6 @@
-import { CMD_EXEC, CmdReturn } from './cmd-functions';
-import { IShell } from './provider';
+import { CMD_EXEC } from './cmd-functions';
 import { shellColors } from './shell-colors';
-
-export interface ShellAction {
-  type: 'push-cmd' | 'move-frame' | 'clear' | 'set-history-marker';
-  payload?: any;
-}
+import { IShell, ShellAction, CmdReturn } from './types';
 
 export const shellReducer = (state: IShell, action: ShellAction) => {
   const newState = { ...state };

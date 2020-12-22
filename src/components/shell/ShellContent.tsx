@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import { resolvePath } from './file-system';
 import { useShell } from './provider';
+import { ShellLines, Url, Cmd, ShellIco, Flex, CmdInput } from './styles';
 
 export const ShellContent = () => {
   const shell = useShell();
   const [cmd, setCmd] = useState('');
 
+  // handle shell keyboard event
   const submitCmd = (e: React.KeyboardEvent) => {
     let history;
     switch (e.key) {
@@ -121,52 +122,3 @@ export const ShellContent = () => {
     </ShellLines>
   );
 };
-
-const CmdInput = styled.input`
-  flex: 1;
-  border: none;
-  background: none;
-  outline: none;
-  color: #ffffff;
-  font-size: 0.75rem;
-  font-weight: 700;
-`;
-
-const ShellLines = styled.div`
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  cursor: text;
-`;
-
-const ShellIco = styled.img`
-  width: 11px;
-  height: 11px;
-  vertical-align: middle;
-  margin-right: 6px;
-`;
-
-const Cmd = styled.span`
-  word-break: break-all;
-  color: ${({ color }) => color};
-  border-bottom: 2px solid transparent;
-  width: fit-content;
-  ${({ onClick, color }) =>
-    onClick
-      ? `
-    :hover {
-      cursor: pointer;
-      border-bottom: 2px solid ${color || '#ffffff'};
-    }
-  `
-      : ''}
-`;
-
-const Flex = styled.div`
-  display: flex;
-`;
-
-const Url = styled.span`
-  padding-right: 6px;
-`;

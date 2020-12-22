@@ -1,46 +1,6 @@
 import React, { useCallback, useContext, useEffect, useReducer } from 'react';
 import { STATIC_REPO } from './static-repository';
-
-interface ITab {
-  id: string;
-  name: string;
-  url: string;
-}
-
-interface IVSCode {
-  repo: IRepository;
-  tabs: ITab[];
-  editorContent: string;
-  currentTab?: string;
-  openTab?: (id: string) => void;
-  closeTab?: (id: string) => void;
-  loadFile?: (url: string) => void;
-  setEditorContent?: (val: string) => void;
-}
-interface IVSCodeAction {
-  type:
-    | 'load-repo'
-    | 'set-lang'
-    | 'open-tab'
-    | 'close-tab'
-    | 'set-editor-content'
-    | 'focus-tab';
-  payload?: any;
-}
-
-export interface ITreeNode {
-  id: string;
-  path: string;
-  type: 'root' | 'blob' | 'tree' | string;
-  children?: ITreeNode[];
-  url?: string;
-}
-
-interface IRepository {
-  name: string;
-  lang: string;
-  tree: ITreeNode;
-}
+import { IVSCode, IVSCodeAction, ITreeNode, ITab } from './types';
 
 const initialVSCodeState: IVSCode = {
   repo: {

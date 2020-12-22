@@ -1,28 +1,8 @@
 import React from 'react';
 import { ContactForm } from './contact-form/ContactForm';
-import { File, MCDEV, resolvePath } from './file-system';
-import { ILine, IShell, Separator } from './provider';
+import { MCDEV, resolvePath } from './file-system';
 import { shellColors } from './shell-colors';
-
-export interface CmdReturn {
-  result: ILine | null;
-  path?: File;
-  sep?: Separator;
-  customForm?: React.ReactNode;
-}
-
-export type CmdFn =
-  | 'cd'
-  | 'ls'
-  | 'echo'
-  | './'
-  | 'clear'
-  | 'curriculum.app'
-  | 'help'
-  | 'contact.me'
-  | 'exit'
-  | 'minimize'
-  | 'maximize';
+import { CmdFn, IShell, CmdReturn } from './types';
 
 export const CMD_EXEC: Map<
   CmdFn,
@@ -120,7 +100,7 @@ CMD_EXEC.set('./', (shell: IShell, params?: string[]) => {
   return CMD_EXEC.get(res[0].ln)!(shell, params.slice(1));
 });
 
-CMD_EXEC.set('curriculum.app', (shell: IShell, params?: string[]) => {
+CMD_EXEC.set('curriculum.app', () => {
   return {
     result: {
       cmd: [
@@ -146,14 +126,14 @@ CMD_EXEC.set('curriculum.app', (shell: IShell, params?: string[]) => {
   };
 });
 
-CMD_EXEC.set('contact.me', (shell: IShell, params?: string[]) => {
+CMD_EXEC.set('contact.me', () => {
   return {
     result: null,
     customForm: <ContactForm />,
   };
 });
 
-CMD_EXEC.set('exit', (shell: IShell, params?: string[]) => {
+CMD_EXEC.set('exit', () => {
   return {
     result: {
       cmd: [{ text: 'Cant close this window!', color: shellColors.red }],
@@ -161,7 +141,7 @@ CMD_EXEC.set('exit', (shell: IShell, params?: string[]) => {
   };
 });
 
-CMD_EXEC.set('help', (shell: IShell, params?: string[]) => {
+CMD_EXEC.set('help', () => {
   return {
     result: {
       cmd: [
