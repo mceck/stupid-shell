@@ -14,7 +14,7 @@ export const ROUTES: {
     cmd: 'clear && ls ~/skills',
   },
   {
-    label: 'Contacts',
+    label: 'Contact me',
     icon: process.env.PUBLIC_URL + '/contacts.png',
     cmd: 'clear && contact.me',
   },

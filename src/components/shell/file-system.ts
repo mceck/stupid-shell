@@ -59,7 +59,25 @@ const CURRICULUM = new File({
 });
 MCDEV.children = [CURRICULUM, SKILLS, CONTACT];
 
-const SKILL_LIST = [
+const SKILL_FRONTEND = new File({
+  name: 'Frontend',
+  icon: process.env.PUBLIC_URL + '/frontend.png',
+  parent: SKILLS,
+  textColor: shellColors.blue,
+});
+const SKILL_BACKEND = new File({
+  name: 'Backend',
+  icon: process.env.PUBLIC_URL + '/backend.png',
+  parent: SKILLS,
+  textColor: shellColors.red,
+});
+const SKILL_OTHER = new File({
+  name: 'Other',
+  icon: process.env.PUBLIC_URL + '/other.png',
+  parent: SKILLS,
+});
+
+const FRONTEND_SKILLS = [
   new File({
     name: 'HTML5',
     icon: process.env.PUBLIC_URL + '/html5.png',
@@ -76,11 +94,6 @@ const SKILL_LIST = [
     textColor: shellColors.yellow,
   }),
   new File({
-    name: 'Node',
-    icon: process.env.PUBLIC_URL + '/node.png',
-    textColor: shellColors.green,
-  }),
-  new File({
     name: 'React',
     icon: process.env.PUBLIC_URL + '/react.png',
     textColor: shellColors.blue,
@@ -90,11 +103,7 @@ const SKILL_LIST = [
     icon: process.env.PUBLIC_URL + '/react_native.png',
     textColor: shellColors.green,
   }),
-  new File({
-    name: 'GraphQL',
-    icon: process.env.PUBLIC_URL + '/graphql.png',
-    textColor: '#ff82ff',
-  }),
+
   new File({
     name: 'Angular',
     icon: process.env.PUBLIC_URL + '/angular.png',
@@ -119,6 +128,29 @@ const SKILL_LIST = [
     icon: process.env.PUBLIC_URL + '/flutter.png',
     textColor: shellColors.blue,
   }),
+];
+
+const BACKEND_SKILLS = [
+  new File({
+    name: 'RESTful',
+    icon: process.env.PUBLIC_URL + '/rest.png',
+    textColor: shellColors.white,
+  }),
+  new File({
+    name: 'GraphQL',
+    icon: process.env.PUBLIC_URL + '/graphql.png',
+    textColor: '#ff82ff',
+  }),
+  new File({
+    name: 'Serverless',
+    icon: process.env.PUBLIC_URL + '/serverless.png',
+    textColor: shellColors.blue,
+  }),
+  new File({
+    name: 'Node',
+    icon: process.env.PUBLIC_URL + '/node.png',
+    textColor: shellColors.green,
+  }),
   new File({
     name: 'Python',
     icon: process.env.PUBLIC_URL + '/python.png',
@@ -134,8 +166,60 @@ const SKILL_LIST = [
     icon: process.env.PUBLIC_URL + '/spring.png',
     textColor: shellColors.green,
   }),
+  new File({
+    name: 'Mongodb',
+    icon: process.env.PUBLIC_URL + '/mongo.png',
+    textColor: shellColors.green,
+  }),
+  new File({
+    name: 'PostgreSQL',
+    icon: process.env.PUBLIC_URL + '/postgres.png',
+    textColor: shellColors.yellow,
+  }),
+  new File({
+    name: 'SQL Server',
+    icon: process.env.PUBLIC_URL + '/mssql.png',
+    textColor: shellColors.white,
+  }),
+  new File({
+    name: 'MySql',
+    icon: process.env.PUBLIC_URL + '/mysql.png',
+    textColor: shellColors.blue,
+  }),
+  new File({
+    name: 'Oracle',
+    icon: process.env.PUBLIC_URL + '/oracle.png',
+    textColor: shellColors.red,
+  }),
 ];
-SKILLS.children = SKILL_LIST;
+
+const OTHER_SKILLS = [
+  new File({
+    name: 'Git',
+    icon: process.env.PUBLIC_URL + '/git.png',
+    textColor: shellColors.red,
+  }),
+  new File({
+    name: 'Docker',
+    icon: process.env.PUBLIC_URL + '/docker.png',
+    textColor: shellColors.blue,
+  }),
+  new File({
+    name: 'AWS',
+    icon: process.env.PUBLIC_URL + '/aws.png',
+    textColor: shellColors.white,
+  }),
+  new File({
+    name: 'Firebase',
+    icon: process.env.PUBLIC_URL + '/firebase.png',
+    textColor: shellColors.yellow,
+  }),
+];
+
+SKILL_FRONTEND.children = FRONTEND_SKILLS;
+SKILL_BACKEND.children = BACKEND_SKILLS;
+SKILL_OTHER.children = OTHER_SKILLS;
+SKILLS.children = [SKILL_FRONTEND, SKILL_BACKEND, SKILL_OTHER];
 
 export const listDirs = (f: File): string[] => {
   if (!f.children) return [];

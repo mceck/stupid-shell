@@ -42,6 +42,7 @@ export const WindowProvider: React.FC = ({ children }) => {
     (window: Partial<IWnd>) => {
       if (isOpen(window.id!)) {
         // TODO porta in primo piano
+        setSelectedId(window.id!);
         return;
       }
       const onClose = () => {
@@ -67,6 +68,7 @@ export const WindowProvider: React.FC = ({ children }) => {
         initHeight: window.initHeight,
       };
       setWindows([...windows, newWindow]);
+      setSelectedId(window.id!);
     },
     [setWindows, windows, isOpen]
   );

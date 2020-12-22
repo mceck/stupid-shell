@@ -96,6 +96,7 @@ export const ShellContent = () => {
               key={`cmd${idx}`}
               color={c.color}
               style={l.path && idx === 0 ? {} : { display: 'block' }}
+              onClick={c.link ? () => shell.pushCmd!(c.link!) : undefined}
             >
               {c.icon && <ShellIco src={c.icon} />}
               {c.text}
@@ -149,6 +150,17 @@ const ShellIco = styled.img`
 const Cmd = styled.span`
   word-break: break-all;
   color: ${({ color }) => color};
+  border-bottom: 2px solid transparent;
+  width: fit-content;
+  ${({ onClick, color }) =>
+    onClick
+      ? `
+    :hover {
+      cursor: pointer;
+      border-bottom: 2px solid ${color || '#ffffff'};
+    }
+  `
+      : ''}
 `;
 
 const Flex = styled.div`

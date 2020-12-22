@@ -14,6 +14,7 @@ export interface ISpan {
   text: string;
   icon?: string;
   color?: string;
+  link?: string;
 }
 
 export interface ILine {

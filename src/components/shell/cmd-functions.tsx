@@ -67,19 +67,28 @@ CMD_EXEC.set('ls', (shell: IShell, params?: string[]) => {
 
   return {
     result: {
-      cmd: path.children.map((f) => {
-        return {
-          text: f.name,
-          icon: f.icon,
-          color:
-            f.textColor ||
-            (f.children
-              ? shellColors.green
-              : f.ln
-              ? shellColors.blue
-              : shellColors.white),
-        };
-      }),
+      cmd: [
+        {
+          text: path.parent ? '..' : '.',
+          link: path.parent
+            ? `cd ${path.parent.url()} && clear && ls`
+            : undefined,
+        },
+        ...path.children.map((f) => {
+          return {
+            text: f.name,
+            icon: f.icon,
+            link: f.children && `cd ${f.url()} && clear && ls`,
+            color:
+              f.textColor ||
+              (f.children
+                ? shellColors.green
+                : f.ln
+                ? shellColors.blue
+                : shellColors.white),
+          };
+        }),
+      ],
     },
   };
 });

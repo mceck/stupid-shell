@@ -27,10 +27,14 @@ export const Dock = () => {
         onClick={() =>
           window.openWindow({
             id: 'vscode',
-            child: <VSCode />,
+            child: (
+              <VSCode githubUrl="https://api.github.com/repos/facebook/react" />
+            ),
             title: 'Code',
             initX: 100,
             initY: 100,
+            initWidth: 800,
+            initHeight: 450,
           })
         }
       />
