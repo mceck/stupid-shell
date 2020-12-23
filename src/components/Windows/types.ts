@@ -14,6 +14,7 @@ export interface IWnd {
 export interface IWndActions {
   openWindow: (window: Partial<IWnd>) => void;
   isOpen: (id: string) => boolean;
+  selectedId?: string;
 }
 
 export interface ResizeAction {

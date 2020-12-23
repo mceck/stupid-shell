@@ -29,10 +29,12 @@ export const WindowProvider: React.FC = ({ children }) => {
       }
       const onClose = () => {
         setWindows(windows.filter((w) => w.id !== window.id));
+        setSelectedId('');
       };
       const onMinimize = () => {
         // TODO implement
         setWindows(windows.filter((w) => w.id !== window.id));
+        setSelectedId('');
       };
       const onMaximize = () => {
         // TODO implement
@@ -67,7 +69,7 @@ export const WindowProvider: React.FC = ({ children }) => {
   }, [setSelectedId]);
 
   return (
-    <Context.Provider value={{ openWindow, isOpen }}>
+    <Context.Provider value={{ openWindow, isOpen, selectedId }}>
       {children}
       {windows.map((w) => (
         <Window

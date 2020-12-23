@@ -29,9 +29,14 @@ export const ContactForm = () => {
   const onSubmit = async (data: Record<string, any>) => {
     setLoading(true);
     try {
-      await new Promise<void>((res, err) => {
-        setTimeout(() => (Math.random() > 0.5 ? res() : err()), 1000);
+      const result = await fetch('https://mcdev-bot.herokuapp.com/contact-me', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
+      if (result.status !== 200) throw new Error('errore invio messaggio');
       setLoading(false);
       setFinish(true);
     } catch (err) {

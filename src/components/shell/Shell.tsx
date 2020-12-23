@@ -1,7 +1,7 @@
 import React from 'react';
 import { useShell } from './provider';
 import { ShellContent } from './ShellContent';
-import { Window } from '../Windows/Window';
+import { Window } from '../windows/Window';
 import { ShellFrame } from './styles';
 
 export const Shell = () => {
