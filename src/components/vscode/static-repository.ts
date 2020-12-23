@@ -6,60 +6,161 @@ export const STATIC_REPO: ITreeNode = {
   type: 'tree',
   children: [
     {
-      id: '1',
-      path: 'test.tsx',
-      type: 'blob',
-      url:
-        'https://raw.githubusercontent.com/arielweinberger/nestjs-course-task-management/master/src/main.ts',
-    },
-    {
-      id: '2',
-      path: 'test2.js',
-      type: 'blob',
-      url:
-        'https://raw.githubusercontent.com/storybookjs/storybook/next/lib/cli/src/add.test.ts',
-    },
-    {
-      id: '3',
-      path: 'sub',
+      id: 'src',
+      path: 'src',
       type: 'tree',
       children: [
         {
-          id: '4',
-          path: 'subtest.txt',
-          type: 'blob',
-          url:
-            'https://raw.githubusercontent.com/storybookjs/storybook/next/lib/cli/src/typings.d.ts',
-        },
-        {
-          id: '5',
-          path: 'sub2',
+          id: 'src/db',
+          path: 'db',
           type: 'tree',
           children: [
             {
-              id: '6',
-              path: 'subtest2.jsx',
+              id: 'src/db/auth.yml',
+              path: 'auth.yml',
               type: 'blob',
               url:
-                'https://raw.githubusercontent.com/storybookjs/storybook/next/lib/client-api/src/hooks.ts',
+                'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/db/auth.yml',
             },
           ],
+        },
+        {
+          id: 'src/entity',
+          path: 'entity',
+          type: 'tree',
+          children: [
+            {
+              id: 'src/entity/Role.ts',
+              path: 'Role.ts',
+              type: 'blob',
+              url:
+                'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/entity/Role.ts',
+            },
+            {
+              id: 'src/entity/User.ts',
+              path: 'User.ts',
+              type: 'blob',
+              url:
+                'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/entity/User.ts',
+            },
+          ],
+        },
+        {
+          id: 'src/interface',
+          path: 'interface',
+          type: 'tree',
+          children: [
+            {
+              id: 'src/interface/Context.ts',
+              path: 'Context.ts',
+              type: 'blob',
+              url:
+                'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/interface/Context.ts',
+            },
+          ],
+        },
+        {
+          id: 'src/middleware',
+          path: 'middleware',
+          type: 'tree',
+          children: [
+            {
+              id: 'src/middleware/authentication.ts',
+              path: 'authentication.ts',
+              type: 'blob',
+              url:
+                'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/middleware/authentication.ts',
+            },
+            {
+              id: 'src/middleware/routes.ts',
+              path: 'src/middleware/routes.ts',
+              type: 'blob',
+              url:
+                'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/middleware/routes.ts',
+            },
+          ],
+        },
+        {
+          id: 'src/resolver',
+          path: 'resolver',
+          type: 'tree',
+          children: [
+            {
+              id: 'src/resolver/UserResolver.ts',
+              path: 'UserResolver.ts',
+              type: 'blob',
+              url:
+                'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/resolver/UserResolver.ts',
+            },
+          ],
+        },
+        {
+          id: 'src/dto',
+          path: 'dto',
+          type: 'tree',
+          children: [
+            {
+              id: 'src/dto/LoginResponse.ts',
+              path: 'LoginResponse.ts',
+              type: 'blob',
+              url:
+                'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/dto/LoginResponse.ts',
+            },
+          ],
+        },
+
+        {
+          id: 'src/auth-tokens.ts',
+          path: 'auth-tokens.ts',
+          type: 'blob',
+          url:
+            'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/auth-tokens.ts',
+        },
+
+        {
+          id: 'src/init-db-data.ts',
+          path: 'init-db-data.ts',
+          type: 'blob',
+          url:
+            'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/init-db-data.ts',
+        },
+
+        {
+          id: 'src/index.ts',
+          path: 'index.ts',
+          type: 'blob',
+          url:
+            'https://raw.githubusercontent.com/mceck/fullstack_server/master/src/index.ts',
         },
       ],
     },
     {
-      id: '7',
-      path: 'sub02',
-      type: 'tree',
-      children: [
-        {
-          id: '8',
-          path: 'subtest02.ts',
-          type: 'blob',
-          url:
-            'https://raw.githubusercontent.com/storybookjs/storybook/next/lib/client-api/src/index.ts',
-        },
-      ],
+      id: 'ormconfig.json',
+      path: 'ormconfig.json',
+      type: 'blob',
+      url:
+        'https://raw.githubusercontent.com/mceck/fullstack_server/master/ormconfig.json',
+    },
+    {
+      id: 'package.json',
+      path: 'package.json',
+      type: 'blob',
+      url:
+        'https://raw.githubusercontent.com/mceck/fullstack_server/master/package.json',
+    },
+    {
+      id: 'tsconfig.json',
+      path: 'tsconfig.json',
+      type: 'blob',
+      url:
+        'https://raw.githubusercontent.com/mceck/fullstack_server/master/tsconfig.json',
+    },
+    {
+      id: 'README.md',
+      path: 'README.md',
+      type: 'blob',
+      url:
+        'https://raw.githubusercontent.com/mceck/fullstack_server/master/README.md',
     },
   ],
 };

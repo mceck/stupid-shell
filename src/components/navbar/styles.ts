@@ -37,12 +37,6 @@ export const Txt = styled.span`
   font-weight: normal;
 `;
 
-export const Link = styled.a`
-  font-weight: normal;
-  color: #9acbff;
-  text-decoration: none;
-`;
-
 export const Line = styled.div`
   margin-bottom: 3px;
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AboutFrame, Line, Center, Txt, Link, ProfileImgEl } from './styles';
+import { AboutFrame, Line, Center, Txt, ProfileImgEl } from './styles';
 
 export const AboutMenu = () => {
   return (
@@ -18,7 +18,7 @@ export const AboutMenu = () => {
         Date of birth: <Txt>19/04/1990</Txt>
       </Line>
       <Line>
-        Email: <Link href="mailto:matcecco@gmail.com">matcecco@gmail.com</Link>
+        City: <Txt>Florence - Italy</Txt>
       </Line>
       <Line>
         Profession: <Txt>Fullstack developer</Txt>

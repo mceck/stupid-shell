@@ -26,7 +26,7 @@ export const LoadingBox = styled.div`
 
 export const SidebarFrame = styled.div`
   height: 100%;
-  width: 30%;
+  min-width: 250px;
   background-color: #282828;
   overflow: auto;
   color: #dedede;
@@ -87,10 +87,16 @@ export const Scrollable = styled.div<{
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #101010;
+    background: transparent;
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #202020;
+
+  :hover {
+    ::-webkit-scrollbar-thumb {
+      background: #404040;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #424242;
+    }
   }
 `;
 
@@ -118,4 +124,16 @@ export const VSIcon = styled.img`
   height: 12px;
   margin-right: 5px;
   vertical-align: middle;
+`;
+
+export const FolderNode = styled.div<{ padLeft?: number }>`
+  display: flex;
+  align-items: center;
+  padding-left: ${({ padLeft }) => padLeft || 2}px;
+  cursor: pointer;
+  padding-bottom: 4px;
+  :hover {
+    background-color: #454545;
+  }
+  transition: all ease 100ms;
 `;
