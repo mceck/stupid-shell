@@ -22,6 +22,7 @@ export const StatusBar: React.FC<{
         e.preventDefault();
         startDrag(true);
       }}
+      onDoubleClick={() => onMaximize()}
     >
       <ActionContainer>
         <CloseIcon onClick={onClose} />

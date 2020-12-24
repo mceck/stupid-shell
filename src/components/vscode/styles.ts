@@ -8,8 +8,9 @@ export const VSCodeFrame = styled.div`
 `;
 
 export const Expanded = styled.div`
-  width: 100%;
   height: 100%;
+  flex: 1;
+  min-width: 250px;
 `;
 
 export const LoadingBox = styled.div`

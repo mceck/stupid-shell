@@ -71,6 +71,7 @@ export const ContactForm = () => {
         <ShellTextarea
           name="message"
           error={errors['message']}
+          maxLength={500}
           ref={register({ required: true })}
         />
         <FormErr>{errors['message']?.type}</FormErr>

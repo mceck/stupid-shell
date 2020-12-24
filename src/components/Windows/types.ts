@@ -26,6 +26,7 @@ export interface ResizeAction {
     | 'start-move'
     | 'move'
     | 'res-move'
+    | 'set'
     | 'mouseup';
   payload?: any;
 }

@@ -30,7 +30,7 @@ const NodeRender: React.FC<{ tree: ITreeNode; padLeft?: number }> = ({
   return (
     <>
       {tree.children.map((n) => (
-        <Node n={n} padLeft={padLeft} />
+        <Node key={n.id} n={n} padLeft={padLeft} />
       ))}
     </>
   );
@@ -41,10 +41,7 @@ const Node: React.FC<{ n: ITreeNode; padLeft: number }> = ({ n, padLeft }) => {
   const [open, setOpen] = useState<boolean>(false);
   if (n.type === 'tree')
     return (
-      <div
-        key={n.id}
-        style={{ height: !open ? '21px' : undefined, overflow: 'hidden' }}
-      >
+      <div style={{ height: !open ? '21px' : undefined, overflow: 'hidden' }}>
         <FolderNode padLeft={padLeft} onClick={() => setOpen(!open)}>
           <VSFileIcon name={n.path} open={open} />
           {n.path}

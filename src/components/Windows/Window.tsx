@@ -10,20 +10,20 @@ export const Window: React.FC<any> = ({
   onClose,
   onMinimize,
   onMaximize,
-  initX,
-  initY,
-  initWidth,
-  initHeight,
+  initX = 50,
+  initY = 50,
+  initWidth = 530,
+  initHeight = 300,
   index,
   ...props
 }) => {
   const [wdw, dispatch] = useReducer<React.Reducer<IWindow, ResizeAction>>(
     resizeReducer,
     {
-      x: initX || 50,
-      y: initY || 50,
-      width: initWidth || 530,
-      height: initHeight || 300,
+      x: initX,
+      y: initY,
+      width: initWidth,
+      height: initHeight,
       resizing: null,
       moving: false,
     }
@@ -133,7 +133,28 @@ export const Window: React.FC<any> = ({
           startDrag={() => dispatch({ type: 'start-move' })}
           onClose={onClose}
           onMinimize={onMinimize}
-          onMaximize={onMaximize}
+          onMaximize={() => {
+            let payload;
+            if (wdw.width >= window.innerWidth) {
+              payload = {
+                x: initX,
+                y: initY,
+                width: initWidth,
+                height: initHeight,
+              };
+            } else {
+              payload = {
+                x: 0,
+                y: 0,
+                width: window.innerWidth,
+                height: window.innerHeight - 105,
+              };
+            }
+            dispatch({
+              type: 'set',
+              payload,
+            });
+          }}
         />
         {children}
         <Resizer
