@@ -9,7 +9,7 @@ export const Shell = () => {
   return (
     <Window
       id="shell"
-      title="Terminale - mcdev@web.mcdev.host"
+      title="Terminal - mcdev@web.mcdev.host"
       onClose={() => shell.pushCmd!('exit')}
       onMinimize={() => shell.pushCmd!('minimize')}
       // onMaximize={() => shell.pushCmd!('maximize')}
