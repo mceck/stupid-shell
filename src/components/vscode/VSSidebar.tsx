@@ -43,7 +43,7 @@ const Node: React.FC<{ n: ITreeNode; padLeft: number }> = ({ n, padLeft }) => {
     return (
       <div
         key={n.id}
-        style={{ height: !open ? '18px' : undefined, overflow: 'hidden' }}
+        style={{ height: !open ? '21px' : undefined, overflow: 'hidden' }}
       >
         <FolderNode padLeft={padLeft} onClick={() => setOpen(!open)}>
           <VSFileIcon name={n.path} open={open} />

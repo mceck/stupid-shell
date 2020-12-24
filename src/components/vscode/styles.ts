@@ -26,7 +26,7 @@ export const LoadingBox = styled.div`
 
 export const SidebarFrame = styled.div`
   height: 100%;
-  min-width: 250px;
+  min-width: 230px;
   background-color: #282828;
   overflow: auto;
   color: #dedede;

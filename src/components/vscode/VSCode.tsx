@@ -26,7 +26,7 @@ const VSEditor = () => {
     <ControlledEditor
       language={vscode.repo.lang}
       theme="dark"
-      options={{ fontSize: 14, fontFamily: 'SFMono' }}
+      options={{ fontSize: 12, fontFamily: 'SFMono' }}
       loading={
         <LoadingBox>
           <img src={process.env.PUBLIC_URL + '/vscode.png'} alt="vsicon" />{' '}
