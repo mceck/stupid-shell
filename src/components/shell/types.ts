@@ -58,6 +58,7 @@ export class File implements IFile {
 export type Separator = '$' | '#';
 
 export interface ISpan {
+  html?: string;
   text: string;
   icon?: string;
   color?: string;

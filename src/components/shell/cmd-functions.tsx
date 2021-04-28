@@ -116,7 +116,29 @@ CMD_EXEC.set('curriculum.app', () => {
           color: shellColors.green,
         },
         {
-          text: 'TODO - complete',
+          text: '',
+          html: `ABOUT ME<br />
+          I'm an addicted to software developing and new technologies<br /><br />
+          PROFESSIONAL EXPERIENCE<br />
+          2020 - today - Permanent employee as fullstack deveoper in a
+consulting and software development company in Florence, collaborating with important companies
+private companies such as supermarkets and pharmaceutical companies for the development of
+mainly web and mobile applications<br /><br />
+
+          2014-2020 - Permanent employee as a programmer at a company
+management software informatics in Florence, collaborating with private companies e
+public administrations for the development of desktop and web applications.<br /><br />
+
+          2008 Internship at an IT company near Florence<br /><br />
+
+          EDUCATION AND TRAINING<br />
+          University of Pisa - Computer Engineering<br />
+          University career currently suspended with 6 exams missing from graduation
+of the degree<br /><br />
+
+          High school<br />
+          Diploma obtained in 2009 at the Russel-Newton scientific high school in Scandicci (FI)<br /><br />
+          `,
         },
         {
           text: '-----',

@@ -100,6 +100,9 @@ export const ShellContent = () => {
               onClick={c.link ? () => shell.pushCmd!(c.link!) : undefined}
             >
               {c.icon && <ShellIco src={c.icon} />}
+              {c.html && (
+                <div dangerouslySetInnerHTML={{ __html: c.html }}></div>
+              )}
               {c.text}
             </Cmd>
           ))}
