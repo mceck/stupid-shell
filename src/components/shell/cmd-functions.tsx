@@ -126,15 +126,14 @@ private companies such as supermarkets and pharmaceutical companies for the deve
 mainly web and mobile applications<br /><br />
 
           2014-2020 - Permanent employee as a programmer at a company
-management software informatics in Florence, collaborating with private companies e
+management software informatics in Florence, collaborating with private companies and
 public administrations for the development of desktop and web applications.<br /><br />
 
           2008 Internship at an IT company near Florence<br /><br />
 
           EDUCATION AND TRAINING<br />
           University of Pisa - Computer Engineering<br />
-          University career currently suspended with 6 exams missing from graduation
-of the degree<br /><br />
+          University career currently suspended with 6 exams missing from graduation<br /><br />
 
           High school<br />
           Diploma obtained in 2009 at the Russel-Newton scientific high school in Scandicci (FI)<br /><br />
