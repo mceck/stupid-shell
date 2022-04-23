@@ -18,7 +18,6 @@ export const Dock = () => {
     <DockFrame data-testid="dock">
       <DockIcon
         label="Visual Studio Code"
-        data-testid="vscode-btn"
         icon={process.env.PUBLIC_URL + '/vscode.png'}
         clicked={vsclick}
         onMouseEvent={(event: React.MouseEvent) => {
