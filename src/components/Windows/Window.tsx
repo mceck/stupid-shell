@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import { resizeReducer } from './reducer';
 import { StatusBar } from './StatusBar';
 import { WindowFrame, RelPanel, Resizer, ResizeAngle } from './styles';
@@ -31,6 +31,8 @@ export const Window: React.FC<any> = ({
     }
   );
 
+  const winRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const fn = () => {
       dispatch({ type: 'mouseup' });
@@ -44,33 +46,38 @@ export const Window: React.FC<any> = ({
   useEffect(() => {
     if (!wdw.resizing) return;
     const fn = (e: any) => {
+      const newWidth =
+        e.clientX - (winRef.current?.getBoundingClientRect()?.left || 0);
+      const newHeight =
+        e.clientY - (winRef.current?.getBoundingClientRect()?.top || 0);
+
       switch (wdw.resizing) {
         case 'top':
           dispatch({
             type: 'res-move',
-            payload: { y: e.movementY, height: -e.movementY },
+            payload: { y: e.clientY, height: newHeight },
           });
           break;
         case 'bottom':
-          dispatch({ type: 'resize', payload: { height: e.movementY } });
+          dispatch({ type: 'resize', payload: { height: newHeight } });
           break;
         case 'left':
           dispatch({
             type: 'res-move',
-            payload: { x: e.movementX, width: -e.movementX },
+            payload: { x: e.clientX },
           });
           break;
         case 'right':
-          dispatch({ type: 'resize', payload: { width: e.movementX } });
+          dispatch({ type: 'resize', payload: { width: newWidth } });
           break;
         case 'nw':
           dispatch({
             type: 'res-move',
             payload: {
-              x: e.movementX,
-              width: -e.movementX,
-              y: e.movementY,
-              height: -e.movementY,
+              x: e.clientX,
+              width: newWidth,
+              y: e.clientY,
+              height: newHeight,
             },
           });
           break;
@@ -78,25 +85,25 @@ export const Window: React.FC<any> = ({
           dispatch({
             type: 'res-move',
             payload: {
-              width: e.movementX,
-              y: e.movementY,
-              height: -e.movementY,
+              width: newWidth,
+              y: e.clientY,
+              height: newHeight,
             },
           });
           break;
         case 'se':
           dispatch({
             type: 'resize',
-            payload: { width: e.movementX, height: e.movementY },
+            payload: { width: newWidth, height: newHeight },
           });
           break;
         case 'sw':
           dispatch({
             type: 'res-move',
             payload: {
-              x: e.movementX,
-              width: -e.movementX,
-              height: e.movementY,
+              x: e.clientX,
+              // width: newWidth,
+              height: newHeight,
             },
           });
           break;
@@ -108,7 +115,7 @@ export const Window: React.FC<any> = ({
     return () => {
       window.removeEventListener('mousemove', fn);
     };
-  }, [dispatch, wdw.resizing]);
+  }, [dispatch, wdw.resizing, winRef]);
 
   useEffect(() => {
     if (!wdw.moving) return;
@@ -128,7 +135,11 @@ export const Window: React.FC<any> = ({
   }, [dispatch, wdw.moving]);
 
   return (
-    <WindowFrame {...props} style={{ left: wdw.x, top: wdw.y, zIndex: index }}>
+    <WindowFrame
+      ref={winRef}
+      {...props}
+      style={{ left: wdw.x, top: wdw.y, zIndex: index }}
+    >
       <RelPanel style={{ width: wdw.width, height: wdw.height }}>
         <StatusBar
           title={title}

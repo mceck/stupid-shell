@@ -10,14 +10,20 @@ export const resizeReducer = (state: IWindow, action: ResizeAction) => {
       newState.width = action.payload;
       break;
     case 'resize':
-      if (action.payload.height) newState.height += action.payload.height;
-      if (action.payload.width) newState.width += action.payload.width;
+      if (action.payload.height) newState.height = action.payload.height;
+      if (action.payload.width) newState.width = action.payload.width;
       break;
     case 'res-move':
-      if (action.payload.height) newState.height += action.payload.height;
-      if (action.payload.width) newState.width += action.payload.width;
-      if (action.payload.x) newState.x += action.payload.x;
-      if (action.payload.y) newState.y += action.payload.y;
+      if (action.payload.x) {
+        newState.x = action.payload.x;
+        newState.width = state.width + (state.x - action.payload.x);
+      }
+      if (action.payload.y) {
+        newState.y = action.payload.y;
+        newState.height = state.height + (state.y - action.payload.y);
+      }
+      if (action.payload.height) newState.height = action.payload.height;
+      if (action.payload.width) newState.width = action.payload.width;
       break;
     case 'set':
       if (action.payload.height !== undefined)

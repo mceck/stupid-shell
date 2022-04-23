@@ -15,14 +15,16 @@ export const StatusBar: React.FC<{
   onMinimize: () => void;
   onMaximize: () => void;
 }> = ({ title, startDrag, onClose, onMinimize, onMaximize }) => {
-  const ref = useRef<any>();
+  const ref = useRef<HTMLDivElement>(null);
   return (
     <StatusBarFrame
       ref={ref}
       onMouseDown={(e) => {
         if (e.button !== 0) return;
-        const offX = e.clientX - ref.current.getBoundingClientRect().left;
-        const offY = e.clientY - ref.current.getBoundingClientRect().top;
+        const offX =
+          e.clientX - (ref.current?.getBoundingClientRect()?.left || 0);
+        const offY =
+          e.clientY - (ref.current?.getBoundingClientRect()?.top || 0);
         e.preventDefault();
         startDrag(true, { offX, offY });
       }}
