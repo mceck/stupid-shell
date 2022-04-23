@@ -115,6 +115,7 @@ export const ShellContent = () => {
         </Url>
         <CmdInput
           ref={shell.cmdInput}
+          data-testid="cmd"
           name="cmd"
           onChange={(e) => setCmd(e.currentTarget.value)}
           value={cmd}
