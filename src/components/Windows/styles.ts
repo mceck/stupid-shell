@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IResizerProps } from './types';
 
 export const WindowFrame = styled.div`
   position: fixed;
@@ -15,12 +16,7 @@ export const RelPanel = styled.div`
   padding-top: 26px;
 `;
 
-export const Resizer = styled.div<{
-  top?: boolean;
-  bottom?: boolean;
-  left?: boolean;
-  right?: boolean;
-}>`
+export const ResizeFlat = styled.div<Partial<IResizerProps>>`
   position: absolute;
   cursor: ${({ top, bottom }) => (top || bottom ? 'ns-resize' : 'ew-resize')};
   width: ${({ top, bottom }) => (top || bottom ? '100%' : '4px')};
@@ -31,12 +27,7 @@ export const Resizer = styled.div<{
 ${({ bottom }) => (bottom ? 'bottom: 0; left: 0;' : '')}
 `;
 
-export const ResizeAngle = styled.div<{
-  nw?: boolean;
-  ne?: boolean;
-  se?: boolean;
-  sw?: boolean;
-}>`
+export const ResizeAngle = styled.div<Partial<IResizerProps>>`
   position: absolute;
   cursor: ${({ nw, se }) => (nw || se ? 'nwse-resize' : 'nesw-resize')};
   width: 5px;

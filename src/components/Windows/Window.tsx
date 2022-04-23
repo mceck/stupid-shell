@@ -1,8 +1,9 @@
 import React, { useEffect, useReducer, useRef } from 'react';
 import { resizeReducer } from './reducer';
 import { StatusBar } from './StatusBar';
-import { WindowFrame, RelPanel, Resizer, ResizeAngle } from './styles';
+import { WindowFrame, RelPanel } from './styles';
 import { IWindow, ResizeAction } from './types';
+import { Resizer } from './Resizer';
 
 export const Window: React.FC<any> = ({
   children,
@@ -55,7 +56,7 @@ export const Window: React.FC<any> = ({
         case 'top':
           dispatch({
             type: 'res-move',
-            payload: { y: e.clientY, height: newHeight },
+            payload: { y: e.clientY },
           });
           break;
         case 'bottom':
@@ -75,9 +76,7 @@ export const Window: React.FC<any> = ({
             type: 'res-move',
             payload: {
               x: e.clientX,
-              width: newWidth,
               y: e.clientY,
-              height: newHeight,
             },
           });
           break;
@@ -87,7 +86,6 @@ export const Window: React.FC<any> = ({
             payload: {
               width: newWidth,
               y: e.clientY,
-              height: newHeight,
             },
           });
           break;
@@ -137,10 +135,14 @@ export const Window: React.FC<any> = ({
   return (
     <WindowFrame
       ref={winRef}
+      data-testid="wnd"
       {...props}
       style={{ left: wdw.x, top: wdw.y, zIndex: index }}
     >
-      <RelPanel style={{ width: wdw.width, height: wdw.height }}>
+      <RelPanel
+        data-testid="wnd-panel"
+        style={{ width: wdw.width, height: wdw.height }}
+      >
         <StatusBar
           title={title}
           startDrag={(v, off) => dispatch({ type: 'start-move', payload: off })}
@@ -172,6 +174,7 @@ export const Window: React.FC<any> = ({
         {children}
         <Resizer
           left
+          data-testid="resizer-left"
           onMouseDown={(e) => {
             e.stopPropagation();
             dispatch({ type: 'start-resize', payload: 'left' });
@@ -179,48 +182,55 @@ export const Window: React.FC<any> = ({
         />
         <Resizer
           right
+          data-testid="resizer-right"
           onMouseDown={(e) => {
             e.stopPropagation();
             dispatch({ type: 'start-resize', payload: 'right' });
           }}
         />
-        {/* <Resizer
+        <Resizer
           top
+          data-testid="resizer-top"
           onMouseDown={(e) => {
             e.stopPropagation();
-            dispatch({ type: 'start-resize', payload: true });
+            dispatch({ type: 'start-resize', payload: 'top' });
           }}
-        /> */}
+        />
         <Resizer
           bottom
+          data-testid="resizer-bottom"
           onMouseDown={(e) => {
             e.stopPropagation();
             dispatch({ type: 'start-resize', payload: 'bottom' });
           }}
         />
-        {/* <ResizeAngle
+        <Resizer
           nw
+          data-testid="resizer-nw"
           onMouseDown={(e) => {
             e.stopPropagation();
             dispatch({ type: 'start-resize', payload: 'nw' });
           }}
         />
-        <ResizeAngle
+        <Resizer
           ne
+          data-testid="resizer-ne"
           onMouseDown={(e) => {
             e.stopPropagation();
             dispatch({ type: 'start-resize', payload: 'ne' });
           }}
-        /> */}
-        <ResizeAngle
+        />
+        <Resizer
           se
+          data-testid="resizer-se"
           onMouseDown={(e) => {
             e.stopPropagation();
             dispatch({ type: 'start-resize', payload: 'se' });
           }}
         />
-        <ResizeAngle
+        <Resizer
           sw
+          data-testid="resizer-sw"
           onMouseDown={(e) => {
             e.stopPropagation();
             dispatch({ type: 'start-resize', payload: 'sw' });

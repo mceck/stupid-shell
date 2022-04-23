@@ -19,6 +19,7 @@ export const StatusBar: React.FC<{
   return (
     <StatusBarFrame
       ref={ref}
+      data-testid="wnd-bar"
       onMouseDown={(e) => {
         if (e.button !== 0) return;
         const offX =
