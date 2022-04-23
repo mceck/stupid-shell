@@ -22,6 +22,8 @@ export const Window: React.FC<any> = ({
     {
       x: initX,
       y: initY,
+      clickOffsetX: 0,
+      clickOffsetY: 0,
       width: initWidth,
       height: initHeight,
       resizing: null,
@@ -114,8 +116,8 @@ export const Window: React.FC<any> = ({
       dispatch({
         type: 'move',
         payload: {
-          x: e.movementX,
-          y: e.movementY,
+          x: e.clientX,
+          y: e.clientY,
         },
       });
     };
@@ -130,7 +132,7 @@ export const Window: React.FC<any> = ({
       <RelPanel style={{ width: wdw.width, height: wdw.height }}>
         <StatusBar
           title={title}
-          startDrag={() => dispatch({ type: 'start-move' })}
+          startDrag={(v, off) => dispatch({ type: 'start-move', payload: off })}
           onClose={onClose}
           onMinimize={onMinimize}
           onMaximize={() => {

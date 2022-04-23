@@ -28,17 +28,20 @@ export const resizeReducer = (state: IWindow, action: ResizeAction) => {
       if (action.payload.y !== undefined) newState.y = action.payload.y;
       break;
     case 'move':
-      newState.x += action.payload.x;
-      newState.y += action.payload.y;
+      newState.x = action.payload.x - newState.clickOffsetX;
+      newState.y = action.payload.y - newState.clickOffsetY;
       break;
     case 'start-resize':
       newState.resizing = action.payload;
       break;
     case 'start-move':
       newState.moving = true;
+      newState.clickOffsetX = action.payload.offX;
+      newState.clickOffsetY = action.payload.offY;
       break;
     case 'mouseup':
       newState.moving = false;
+      newState.clickOffsetX = newState.clickOffsetY = 0;
       newState.resizing = null;
       break;
     default:

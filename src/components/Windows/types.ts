@@ -34,6 +34,8 @@ export interface ResizeAction {
 export interface IWindow {
   x: number;
   y: number;
+  clickOffsetX: number;
+  clickOffsetY: number;
   width: number;
   height: number;
   resizing:

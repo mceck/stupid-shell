@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import {
   StatusBarFrame,
   ActionContainer,
@@ -10,17 +10,21 @@ import {
 
 export const StatusBar: React.FC<{
   title: string;
-  startDrag: (v?: boolean) => void;
+  startDrag: (v?: boolean, offset?: { offX: number; offY: number }) => void;
   onClose: () => void;
   onMinimize: () => void;
   onMaximize: () => void;
 }> = ({ title, startDrag, onClose, onMinimize, onMaximize }) => {
+  const ref = useRef<any>();
   return (
     <StatusBarFrame
+      ref={ref}
       onMouseDown={(e) => {
         if (e.button !== 0) return;
+        const offX = e.clientX - ref.current.getBoundingClientRect().left;
+        const offY = e.clientY - ref.current.getBoundingClientRect().top;
         e.preventDefault();
-        startDrag(true);
+        startDrag(true, { offX, offY });
       }}
       onDoubleClick={() => onMaximize()}
     >
