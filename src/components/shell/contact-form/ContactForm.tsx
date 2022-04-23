@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { contactApi } from '../../../api/contact';
 import { useShell } from '../provider';
 import {
   ShellButton,
@@ -10,7 +11,8 @@ import {
   ShellTextarea,
 } from './styles';
 
-const EMAIL_REGEX = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[_])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[_])+)\])/;
+const EMAIL_REGEX =
+  /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[_])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[_])+)\])/;
 
 export const ContactForm = () => {
   const {
@@ -29,14 +31,7 @@ export const ContactForm = () => {
   const onSubmit = async (data: Record<string, any>) => {
     setLoading(true);
     try {
-      const result = await fetch('https://mcdev-bot.herokuapp.com/contact-me', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      if (result.status !== 200) throw new Error('errore invio messaggio');
+      await contactApi.contactMe(data);
       setLoading(false);
       setFinish(true);
     } catch (err) {
@@ -60,6 +55,7 @@ export const ContactForm = () => {
       <FormGroup>
         <ShellLabel htmlFor="email">Email: </ShellLabel>
         <ShellInput
+          id="email"
           name="email"
           error={errors['email']}
           ref={register({ required: true, pattern: EMAIL_REGEX })}
@@ -69,6 +65,7 @@ export const ContactForm = () => {
       <FormGroup>
         <ShellLabel htmlFor="message">Message: </ShellLabel>
         <ShellTextarea
+          id="message"
           name="message"
           error={errors['message']}
           maxLength={500}
