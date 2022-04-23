@@ -32,9 +32,9 @@ export const StatusBar: React.FC<{
       onDoubleClick={() => onMaximize()}
     >
       <ActionContainer>
-        <CloseIcon onClick={onClose} />
-        <MinimizeIcon onClick={onMinimize} />
-        <FullscreenIcon onClick={onMaximize} />
+        <CloseIcon id="close" onClick={onClose} />
+        <MinimizeIcon id="minimize" onClick={onMinimize} />
+        <FullscreenIcon id="resize" onClick={onMaximize} />
       </ActionContainer>
       <Title>{title}</Title>
     </StatusBarFrame>

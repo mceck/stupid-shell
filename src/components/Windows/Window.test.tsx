@@ -10,6 +10,8 @@ const START_W = '530px';
 const START_H = '300px';
 
 const WND_MIN_SIZE = '100px';
+const WND_MIN_X = '0px';
+const WND_MIN_Y = '26px';
 
 const setupTest = () => {
   const app = render(<App />);
@@ -239,6 +241,19 @@ test('resize se lower bounds', () => {
   expect(wndPanel.style.height).toBe(WND_MIN_SIZE);
 });
 
+test('fullsize window', () => {
+  const { wnd, wndPanel, wndBar } = setupTest();
+  const resizeBtn = wndBar.querySelector('#resize');
+  expect(resizeBtn).not.toBeNull();
+  if (resizeBtn) fireEvent.click(resizeBtn);
+  expect(wnd.style.top).toBe(WND_MIN_Y);
+  expect(wnd.style.left).toBe(WND_MIN_X);
+  expect(wndPanel.style.width).toBe(`${global.innerWidth}px`);
+  expect(parseInt(wndPanel.style.height)).toBeGreaterThan(
+    global.innerHeight - 150
+  );
+});
+
 test('open vscode window', () => {
   const { app } = setupTest();
   let windowsShowed = app.queryAllByTestId('wnd').length;
@@ -250,4 +265,44 @@ test('open vscode window', () => {
   if (vscodeBtn) fireEvent.click(vscodeBtn);
   windowsShowed = app.queryAllByTestId('wnd').length;
   expect(windowsShowed).toBe(2);
+});
+
+test('close window', () => {
+  const { app } = setupTest();
+  let windowsShowed = app.queryAllByTestId('wnd');
+  expect(windowsShowed.length).toBe(1);
+  const vscodeBtn = app
+    .getByTestId('dock')
+    .querySelector('[label="Visual Studio Code"]');
+  expect(vscodeBtn).not.toBeNull();
+  if (vscodeBtn) fireEvent.click(vscodeBtn);
+  windowsShowed = app.queryAllByTestId('wnd');
+  expect(windowsShowed.length).toBe(2);
+
+  windowsShowed.forEach((w) => {
+    const closeBtn = w.querySelector('#close');
+    if (closeBtn) fireEvent.click(closeBtn);
+  });
+  windowsShowed = app.queryAllByTestId('wnd');
+  expect(windowsShowed.length).toBe(1);
+});
+
+test('minimize window', () => {
+  const { app } = setupTest();
+  let windowsShowed = app.queryAllByTestId('wnd');
+  expect(windowsShowed.length).toBe(1);
+  const vscodeBtn = app
+    .getByTestId('dock')
+    .querySelector('[label="Visual Studio Code"]');
+  expect(vscodeBtn).not.toBeNull();
+  if (vscodeBtn) fireEvent.click(vscodeBtn);
+  windowsShowed = app.queryAllByTestId('wnd');
+  expect(windowsShowed.length).toBe(2);
+
+  windowsShowed.forEach((w) => {
+    const closeBtn = w.querySelector('#minimize');
+    if (closeBtn) fireEvent.click(closeBtn);
+  });
+  windowsShowed = app.queryAllByTestId('wnd');
+  expect(windowsShowed.length).toBe(1);
 });
