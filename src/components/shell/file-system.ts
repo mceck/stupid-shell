@@ -10,6 +10,9 @@ export const MCDEV = new File({ name: 'mcdev', parent: HOME });
 HOME.children = [MCDEV];
 
 const SKILLS = new File({ name: 'skills', parent: MCDEV, children: [] });
+
+const PRIZES = new File({ name: 'prizes', parent: MCDEV, children: [] });
+
 const CONTACT = new File({
   name: 'contact',
   parent: MCDEV,
@@ -20,7 +23,7 @@ const CURRICULUM = new File({
   parent: MCDEV,
   ln: 'curriculum.app',
 });
-MCDEV.children = [CURRICULUM, SKILLS, CONTACT];
+MCDEV.children = [CURRICULUM, SKILLS, PRIZES, CONTACT];
 
 const SKILL_FRONTEND = new File({
   name: 'Frontend',
@@ -183,6 +186,25 @@ SKILL_FRONTEND.children = FRONTEND_SKILLS;
 SKILL_BACKEND.children = BACKEND_SKILLS;
 SKILL_OTHER.children = OTHER_SKILLS;
 SKILLS.children = [SKILL_FRONTEND, SKILL_BACKEND, SKILL_OTHER];
+
+const PRIZES_LIST = [
+  new File({
+    name: '1st place - Plansoft coding challenge 2021',
+    textColor: shellColors.yellow,
+    icon: '/prize.png',
+  }),
+  new File({
+    name: '1st place - Codemotion Sailogy frontend challenge 2021',
+    textColor: shellColors.yellow,
+    icon: '/prize.png',
+  }),
+  new File({
+    name: '1st place - Codemotion Lord of code Spanish edition - Frontend 2022',
+    textColor: shellColors.yellow,
+    icon: '/prize.png',
+  }),
+];
+PRIZES.children = PRIZES_LIST;
 
 export const listDirs = (f: File): string[] => {
   if (!f.children) return [];
