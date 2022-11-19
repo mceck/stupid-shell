@@ -5,7 +5,7 @@ import { VSTabBar } from './VSTabBar';
 import { useVSCode, VSCodeProvider } from './vscode-provider';
 import { VSCodeFrame, Expanded, LoadingBox } from './styles';
 
-export const VSCode: React.FC<{ githubUrl: string }> = ({ githubUrl }) => {
+export const VSCode: React.FC<{ githubUrl?: string }> = ({ githubUrl }) => {
   return (
     <VSCodeProvider githubUrl={githubUrl}>
       <VSCodeFrame>

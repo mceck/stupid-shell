@@ -27,11 +27,8 @@ export const Dock = () => {
         onClick={() =>
           window.openWindow({
             id: 'vscode',
-            child: (
-              <VSCode githubUrl="https://api.github.com/repos/facebook/react" />
-            ),
-            title:
-              'Code - Template project GraphQL + JWT + React + React Native',
+            child: <VSCode />,
+            title: 'Code - mcdev-web',
             initX: 100,
             initY: 100,
             initWidth: 800,

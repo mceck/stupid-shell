@@ -22,7 +22,7 @@ export const useVSCode = () => useContext(Context);
 
 export const VSCodeConsumer = Context.Consumer;
 
-export const VSCodeProvider: React.FC<{ githubUrl: string }> = ({
+export const VSCodeProvider: React.FC<{ githubUrl?: string }> = ({
   children,
   githubUrl,
 }) => {
