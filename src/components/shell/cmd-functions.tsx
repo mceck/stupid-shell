@@ -120,9 +120,13 @@ CMD_EXEC.set('curriculum.app', () => {
           html: `ABOUT ME<br />
           I'm an addicted to software developing and new technologies<br /><br />
           PROFESSIONAL EXPERIENCE<br />
-          2020 - today - Permanent employee as fullstack deveoper in a
-consulting and software development company in Florence, collaborating with important companies
-private companies such as supermarkets and pharmaceutical companies for the development of
+          2022 - today - Permanent employee as fullstack deveoper working from remote in a 
+consulting and software development company located in Brescia, collaborating for the development of
+mainly web and mobile applications<br /><br />
+
+          2020 - 2022 - Permanent employee as fullstack deveoper in a
+consulting and software development company in Florence, collaborating with important 
+private companies such as GDOs and pharmaceutical companies for the development of
 mainly web and mobile applications<br /><br />
 
           2014-2020 - Permanent employee as a programmer at a company

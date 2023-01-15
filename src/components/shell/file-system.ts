@@ -118,6 +118,11 @@ const BACKEND_SKILLS = [
     textColor: shellColors.green,
   }),
   new File({
+    name: 'Rails',
+    icon: process.env.PUBLIC_URL + '/rails.png',
+    textColor: shellColors.red,
+  }),
+  new File({
     name: 'Python',
     icon: process.env.PUBLIC_URL + '/python.png',
     textColor: shellColors.yellow,
