@@ -81,7 +81,7 @@ const FRONTEND_SKILLS = [
     textColor: shellColors.green,
   }),
   new File({
-    name: 'Svelt',
+    name: 'Svelte',
     icon: process.env.PUBLIC_URL + '/svelt.png',
   }),
   new File({
