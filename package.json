@@ -26,10 +26,10 @@
   },
   "scripts": {
     "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "deploy": "react-scripts build && netlify deploy --prod --dir=build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "test": "NODE_OPTIONS=--openssl-legacy-provider react-scripts test",
+    "eject": "NODE_OPTIONS=--openssl-legacy-provider react-scripts eject",
+    "deploy": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build && netlify deploy --prod --dir=build",
     "gen-repo": "node generate-static-repository.js"
   },
   "eslintConfig": {
