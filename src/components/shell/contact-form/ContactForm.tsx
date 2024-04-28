@@ -31,6 +31,7 @@ export const ContactForm = () => {
   const onSubmit = async (data: Record<string, any>) => {
     setLoading(true);
     try {
+      console.log(data);
       await contactApi.contactMe(data);
       setLoading(false);
       setFinish(true);

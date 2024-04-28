@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useWindow } from '../window/window-provider';
+import { useWindow } from '../windows/window-provider';
 import { useShell } from '../shell/provider';
 import { VSCode } from '../vscode/VSCode';
 import { ROUTES } from './routes';
