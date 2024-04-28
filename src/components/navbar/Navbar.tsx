@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import apple_logo from '../../style/apple_logo.png';
-import { useWindow } from '../windows/window-provider';
+import { useWindow } from '../window/window-provider';
 import { AboutMenu } from './AboutMenu';
 import { NavbarFrame, Right, LogoOverlay, LogoImg } from './styles';
 import { Time } from './Time';
