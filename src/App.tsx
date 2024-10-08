@@ -1,4 +1,3 @@
-import React from 'react';
 import { Dock } from './components/dock/Dock';
 import { Navbar } from './components/navbar/Navbar';
 import { ShellProvider } from './components/shell/provider';

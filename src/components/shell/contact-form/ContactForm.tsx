@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { contactApi } from '../../../api/contact';
 import { useShell } from '../provider';
@@ -17,9 +17,8 @@ const EMAIL_REGEX =
 export const ContactForm = () => {
   const {
     register,
-    errors,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm();
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -57,22 +56,20 @@ export const ContactForm = () => {
         <ShellLabel htmlFor="email">Email: </ShellLabel>
         <ShellInput
           id="email"
-          name="email"
-          error={errors['email']}
-          ref={register({ required: true, pattern: EMAIL_REGEX })}
+          $error={!!errors['email']}
+          {...register('email', { required: true, pattern: EMAIL_REGEX })}
         />
-        <FormErr>{errors['email']?.type}</FormErr>
+        <FormErr>{errors['email']?.type as string}</FormErr>
       </FormGroup>
       <FormGroup>
         <ShellLabel htmlFor="message">Message: </ShellLabel>
         <ShellTextarea
           id="message"
-          name="message"
-          error={errors['message']}
+          $error={!!errors['message']}
           maxLength={500}
-          ref={register({ required: true })}
+          {...register('message', { required: true })}
         />
-        <FormErr>{errors['message']?.type}</FormErr>
+        <FormErr>{errors['message']?.type as string}</FormErr>
       </FormGroup>
       <ShellButton type="submit" disabled={isSubmitting}>
         SEND MESSAGE

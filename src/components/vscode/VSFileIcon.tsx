@@ -7,28 +7,18 @@ export const VSFileIcon: React.FC<{
   open?: boolean;
 }> = ({ name, open, ...props }) => {
   if (name.match(/\.ts[x]?$/))
-    return (
-      <VSIcon {...props} src={process.env.PUBLIC_URL + '/tsico.png'} alt="." />
-    );
+    return <VSIcon {...props} src={'/tsico.png'} alt="." />;
   if (name.match(/\.js[x]?$/))
-    return (
-      <VSIcon {...props} src={process.env.PUBLIC_URL + '/jsico.png'} alt="." />
-    );
+    return <VSIcon {...props} src={'/jsico.png'} alt="." />;
   if (!name.match(/\.[^/]+$/))
     return (
       <VSIcon
         {...props}
-        src={process.env.PUBLIC_URL + '/folderico.png'}
+        src={'/folderico.png'}
         alt="."
         style={{ transform: open ? undefined : 'rotate(-90deg)' }}
       />
     );
 
-  return (
-    <VSIcon
-      {...props}
-      src={process.env.PUBLIC_URL + '/defaultico.png'}
-      alt="."
-    />
-  );
+  return <VSIcon {...props} src={'/defaultico.png'} alt="." />;
 };

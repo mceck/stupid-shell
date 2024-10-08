@@ -40,7 +40,7 @@ const AppleLogo: React.FC<{
   onClick?: (event: React.MouseEvent) => void;
 }> = ({ opened, onClick }) => {
   return (
-    <LogoOverlay opened={opened} onClick={onClick} data-testid="nav-logo">
+    <LogoOverlay $opened={opened} onClick={onClick} data-testid="nav-logo">
       <LogoImg src={apple_logo} />
     </LogoOverlay>
   );

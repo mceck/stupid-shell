@@ -32,14 +32,14 @@ export interface ResizeAction {
 }
 
 export interface IResizerProps {
-  nw?: boolean;
-  ne?: boolean;
-  se?: boolean;
-  sw?: boolean;
-  top?: boolean;
-  bottom?: boolean;
-  left?: boolean;
-  right?: boolean;
+  $nw?: boolean;
+  $ne?: boolean;
+  $se?: boolean;
+  $sw?: boolean;
+  $top?: boolean;
+  $bottom?: boolean;
+  $left?: boolean;
+  $right?: boolean;
   onMouseDown?: (e: any) => void;
 }
 

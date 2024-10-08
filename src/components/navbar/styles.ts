@@ -76,10 +76,10 @@ export const LogoImg = styled.img`
   margin: 0 10px;
 `;
 
-export const LogoOverlay = styled.div<{ opened: boolean }>`
+export const LogoOverlay = styled.div<{ $opened: boolean }>`
   border-radius: 4px;
   margin: 0 5px;
 
-  ${({ opened }) =>
-    opened ? 'background-color: rgba(255, 255, 255, 0.4);' : ''}
+  ${({ $opened }) =>
+    $opened ? 'background-color: rgba(255, 255, 255, 0.4);' : ''}
 `;

@@ -18,7 +18,7 @@ export const Dock = () => {
     <DockFrame data-testid="dock">
       <DockIcon
         label="Visual Studio Code"
-        icon={process.env.PUBLIC_URL + '/vscode.png'}
+        icon={'/vscode.png'}
         clicked={vsclick}
         onMouseEvent={(event: React.MouseEvent) => {
           setVsclick(event.type === 'mousedown');
@@ -61,10 +61,12 @@ const DockIcon: React.FC<{
   isOpen?: boolean;
   onMouseEvent: (event: React.MouseEvent) => void;
   onClick: (event: React.MouseEvent) => void;
-}> = ({ onMouseEvent, isOpen, ...props }) => {
+}> = ({ onMouseEvent, isOpen, clicked, icon, ...props }) => {
   return (
     <DockIconDiv
       {...props}
+      $clicked={clicked}
+      $icon={icon}
       onMouseDown={onMouseEvent}
       onMouseLeave={onMouseEvent}
       onMouseUp={onMouseEvent}

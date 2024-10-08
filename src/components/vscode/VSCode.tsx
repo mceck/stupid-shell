@@ -1,5 +1,6 @@
-import React from 'react';
-import { ControlledEditor } from '@monaco-editor/react';
+import React, { useCallback } from 'react';
+import { Editor, Monaco } from '@monaco-editor/react';
+import { editor } from 'monaco-editor';
 import { VSSidebar } from './VSSidebar';
 import { VSTabBar } from './VSTabBar';
 import { useVSCode, VSCodeProvider } from './vscode-provider';
@@ -22,18 +23,28 @@ export const VSCode: React.FC<{ githubUrl?: string }> = ({ githubUrl }) => {
 const VSEditor = () => {
   const vscode = useVSCode();
 
+  const onMount = useCallback(
+    (_editor: editor.IStandaloneCodeEditor, monaco: Monaco) => {
+      monaco.languages.typescript.typescriptDefaults.setDiagnosticsOptions({
+        noSemanticValidation: true,
+        noSyntaxValidation: true,
+      });
+    },
+    []
+  );
+
   return (
-    <ControlledEditor
+    <Editor
       language={vscode.repo.lang}
-      theme="dark"
+      theme="vs-dark"
       options={{ fontSize: 12, fontFamily: 'SFMono' }}
       loading={
         <LoadingBox>
-          <img src={process.env.PUBLIC_URL + '/vscode.png'} alt="vsicon" />{' '}
-          Loading...
+          <img src={'/vscode.png'} alt="vsicon" /> Loading...
         </LoadingBox>
       }
       value={vscode.editorContent}
+      onMount={onMount}
     />
   );
 };

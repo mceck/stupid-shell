@@ -1,4 +1,3 @@
-import React from 'react';
 import { AboutFrame, Line, Center, Txt, ProfileImgEl } from './styles';
 
 export const AboutMenu = () => {
@@ -28,5 +27,5 @@ export const AboutMenu = () => {
 };
 
 const ProfileImg = () => {
-  return <ProfileImgEl src={process.env.PUBLIC_URL + '/profile.jpg'} />;
+  return <ProfileImgEl src={'/profile.jpg'} />;
 };

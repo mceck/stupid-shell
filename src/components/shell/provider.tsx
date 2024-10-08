@@ -1,4 +1,5 @@
 import React, {
+  ReactNode,
   Reducer,
   useCallback,
   useContext,
@@ -32,7 +33,9 @@ export const useShell = () => useContext(Context);
 
 export const ShellConsumer = Context.Consumer;
 
-export const ShellProvider: React.FC = ({ children }) => {
+export const ShellProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [state, dispatch] = useReducer<Reducer<IShell, ShellAction>>(
     shellReducer,
     initialShellState

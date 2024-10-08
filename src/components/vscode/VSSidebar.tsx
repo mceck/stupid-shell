@@ -14,7 +14,7 @@ export const VSSidebar = () => {
   const vscode = useVSCode();
   return (
     <SidebarFrame>
-      <Scrollable horizontal vertical>
+      <Scrollable $horizontal $vertical>
         <SideHeader>Project</SideHeader>
         <NodeRender tree={vscode.repo.tree} />
       </Scrollable>
@@ -42,7 +42,7 @@ const Node: React.FC<{ n: ITreeNode; padLeft: number }> = ({ n, padLeft }) => {
   if (n.type === 'tree')
     return (
       <div style={{ height: !open ? '21px' : undefined, overflow: 'hidden' }}>
-        <FolderNode padLeft={padLeft} onClick={() => setOpen(!open)}>
+        <FolderNode $padLeft={padLeft} onClick={() => setOpen(!open)}>
           <VSFileIcon name={n.path} open={open} />
           {n.path}
         </FolderNode>
@@ -56,8 +56,8 @@ const Node: React.FC<{ n: ITreeNode; padLeft: number }> = ({ n, padLeft }) => {
         onClick={() =>
           vscode.currentTab !== n.id ? vscode.openTab!(n.id) : null
         }
-        active={vscode.currentTab === n.id}
-        padLeft={padLeft}
+        $active={vscode.currentTab === n.id}
+        $padLeft={padLeft}
       >
         <VSFileIcon name={n.path} />
         {n.path}

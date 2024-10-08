@@ -173,7 +173,7 @@ export const Window: React.FC<any> = ({
         />
         {children}
         <Resizer
-          left
+          $left
           data-testid="resizer-left"
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -181,7 +181,7 @@ export const Window: React.FC<any> = ({
           }}
         />
         <Resizer
-          right
+          $right
           data-testid="resizer-right"
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -189,7 +189,7 @@ export const Window: React.FC<any> = ({
           }}
         />
         <Resizer
-          top
+          $top
           data-testid="resizer-top"
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -197,7 +197,7 @@ export const Window: React.FC<any> = ({
           }}
         />
         <Resizer
-          bottom
+          $bottom
           data-testid="resizer-bottom"
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -205,7 +205,7 @@ export const Window: React.FC<any> = ({
           }}
         />
         <Resizer
-          nw
+          $nw
           data-testid="resizer-nw"
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -213,7 +213,7 @@ export const Window: React.FC<any> = ({
           }}
         />
         <Resizer
-          ne
+          $ne
           data-testid="resizer-ne"
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -221,7 +221,7 @@ export const Window: React.FC<any> = ({
           }}
         />
         <Resizer
-          se
+          $se
           data-testid="resizer-se"
           onMouseDown={(e) => {
             e.stopPropagation();
@@ -229,7 +229,7 @@ export const Window: React.FC<any> = ({
           }}
         />
         <Resizer
-          sw
+          $sw
           data-testid="resizer-sw"
           onMouseDown={(e) => {
             e.stopPropagation();

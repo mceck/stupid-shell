@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useReducer } from 'react';
+import React, {
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from 'react';
 import { fetchRaw, findFileById, vsReducer } from './reducer';
 import { IVSCode, IVSCodeAction, ITreeNode, ITab } from './types';
 
@@ -22,10 +28,10 @@ export const useVSCode = () => useContext(Context);
 
 export const VSCodeConsumer = Context.Consumer;
 
-export const VSCodeProvider: React.FC<{ githubUrl?: string }> = ({
-  children,
-  githubUrl,
-}) => {
+export const VSCodeProvider: React.FC<{
+  children: ReactNode;
+  githubUrl?: string;
+}> = ({ children, githubUrl }) => {
   const [state, dispatch] = useReducer<React.Reducer<IVSCode, IVSCodeAction>>(
     vsReducer,
     initialVSCodeState

@@ -1,4 +1,3 @@
-import React from 'react';
 import { TabFrame, Tab, CloseBtn, Scrollable } from './styles';
 import { useVSCode } from './vscode-provider';
 import { VSFileIcon } from './VSFileIcon';
@@ -6,7 +5,7 @@ import { VSFileIcon } from './VSFileIcon';
 export const VSTabBar = () => {
   const vscode = useVSCode();
   return (
-    <Scrollable horizontal>
+    <Scrollable $horizontal>
       <TabFrame>
         {vscode.tabs.map((t) => (
           <Tab
@@ -14,7 +13,7 @@ export const VSTabBar = () => {
             onClick={() =>
               vscode.currentTab !== t.id ? vscode.openTab!(t.id) : null
             }
-            active={t.id === vscode.currentTab}
+            $active={t.id === vscode.currentTab}
           >
             <VSFileIcon name={t.name} />
             {t.name}{' '}

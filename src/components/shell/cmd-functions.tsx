@@ -1,4 +1,3 @@
-import React from 'react';
 import { ContactForm } from './contact-form/ContactForm';
 import { MCDEV, resolvePath } from './file-system';
 import { shellColors } from './shell-colors';
@@ -14,11 +13,11 @@ CMD_EXEC.set('cd', (shell: IShell, params?: string[]) => {
   let newPath = MCDEV;
   if (params && params.length === 1) {
     newPath = shell.path;
-    const url = params[0].replaceAll('~', MCDEV.url());
+    const url = params[0].replace('~', MCDEV.url());
 
     try {
       newPath = resolvePath(url, shell.path);
-    } catch (error) {
+    } catch (error: any) {
       throw new Error(`cd: ${error.message}`);
     }
   }
@@ -31,7 +30,7 @@ CMD_EXEC.set('cd', (shell: IShell, params?: string[]) => {
 CMD_EXEC.set('ls', (shell: IShell, params?: string[]) => {
   let path = shell.path;
   if (params && params.length === 1) {
-    path = resolvePath(params[0].replaceAll('~', MCDEV.url()), shell.path);
+    path = resolvePath(params[0].replace('~', MCDEV.url()), shell.path);
     if (!path) path = shell.path;
   }
   if (!path.children)

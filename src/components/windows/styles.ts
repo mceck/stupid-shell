@@ -18,27 +18,28 @@ export const RelPanel = styled.div`
 
 export const ResizeFlat = styled.div<Partial<IResizerProps>>`
   position: absolute;
-  cursor: ${({ top, bottom }) => (top || bottom ? 'ns-resize' : 'ew-resize')};
-  width: ${({ top, bottom }) => (top || bottom ? '100%' : '4px')};
-  height: ${({ left, right }) => (left || right ? '100%' : '4px')};
+  cursor: ${({ $top, $bottom }) =>
+    $top || $bottom ? 'ns-resize' : 'ew-resize'};
+  width: ${({ $top, $bottom }) => ($top || $bottom ? '100%' : '4px')};
+  height: ${({ $left, $right }) => ($left || $right ? '100%' : '4px')};
 
-  ${({ left, top }) => (left || top ? 'top: 0; left: 0;' : '')}
-  ${({ right }) => (right ? 'top: 0; right: 0;' : '')}
-${({ bottom }) => (bottom ? 'bottom: 0; left: 0;' : '')}
+  ${({ $left, $top }) => ($left || $top ? 'top: 0; left: 0;' : '')}
+  ${({ $right }) => ($right ? 'top: 0; right: 0;' : '')}
+${({ $bottom }) => ($bottom ? 'bottom: 0; left: 0;' : '')}
 `;
 
 export const ResizeAngle = styled.div<Partial<IResizerProps>>`
   position: absolute;
-  cursor: ${({ nw, se }) => (nw || se ? 'nwse-resize' : 'nesw-resize')};
+  cursor: ${({ $nw, $se }) => ($nw || $se ? 'nwse-resize' : 'nesw-resize')};
   width: 5px;
   height: 5px;
 
-  ${({ nw, ne, se }) =>
-    nw
+  ${({ $nw, $ne, $se }) =>
+    $nw
       ? 'top: 0; left: 0;'
-      : ne
+      : $ne
       ? 'top: 0; right: 0;'
-      : se
+      : $se
       ? 'bottom: 0; right: 0;'
       : 'bottom: 0; left: 0;'}
 `;

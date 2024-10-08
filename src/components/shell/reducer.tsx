@@ -44,7 +44,7 @@ export const shellReducer = (state: IShell, action: ShellAction) => {
 };
 
 const executeCmd = (shell: IShell, line: string): CmdReturn => {
-  const cmds = line.trim().replaceAll(/ [ ]+/g, ' ').split(' ');
+  const cmds = line.trim().replace(/ [ ]+/g, ' ').split(' ');
   let cmd: any = cmds[0];
   let params = cmds.slice(1);
   if (cmd.startsWith('./')) {
@@ -55,7 +55,7 @@ const executeCmd = (shell: IShell, line: string): CmdReturn => {
     if (!CMD_EXEC.has(cmd))
       throw new Error(`sh-mcdev: command not found: ${cmd}`);
     return CMD_EXEC.get(cmd)!(shell, params);
-  } catch (error) {
+  } catch (error: any) {
     return {
       result: {
         cmd: [{ text: error.message, color: shellColors.red }],

@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from 'react';
 import { IWnd, IWndActions } from './types';
 import { Window } from './Window';
 
@@ -10,7 +16,9 @@ export const useWindow = () => useContext(Context);
 
 export const WindowConsumer = Context.Consumer;
 
-export const WindowProvider: React.FC = ({ children }) => {
+export const WindowProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [windows, setWindows] = useState<IWnd[]>([]);
   const [selectedId, setSelectedId] = useState<string>('');
 

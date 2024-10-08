@@ -32,7 +32,7 @@ export const FormGroup = styled.div`
   }
 `;
 
-export const ShellInput = styled.input<{ error: boolean }>`
+export const ShellInput = styled.input<{ $error: boolean }>`
   width: 260px;
   margin-right: 10px;
   border: none;
@@ -42,10 +42,10 @@ export const ShellInput = styled.input<{ error: boolean }>`
   font-size: 0.75rem;
   font-weight: 700;
   border-bottom: 2px solid
-    ${({ error }) => (error ? shellColors.red : '#dedede')};
+    ${({ $error }) => ($error ? shellColors.red : '#dedede')};
 `;
 
-export const ShellTextarea = styled.textarea<{ error: boolean }>`
+export const ShellTextarea = styled.textarea<{ $error: boolean }>`
   width: 260px;
   margin-right: 10px;
   border: none;
@@ -55,7 +55,7 @@ export const ShellTextarea = styled.textarea<{ error: boolean }>`
   font-size: 0.75rem;
   font-weight: 700;
   border-bottom: 2px solid
-    ${({ error }) => (error ? shellColors.red : '#dedede')};
+    ${({ $error }) => ($error ? shellColors.red : '#dedede')};
 `;
 
 export const ShellButton = styled.button`

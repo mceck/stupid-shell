@@ -48,11 +48,11 @@ export const SideHeader = styled.div`
   top: 0;
 `;
 
-export const FileNode = styled.div<{ active?: boolean; padLeft?: number }>`
+export const FileNode = styled.div<{ $active?: boolean; $padLeft?: number }>`
   cursor: pointer;
   padding-bottom: 4px;
-  ${({ active }) => (active ? 'background-color: #505050;' : '')}
-  ${({ padLeft }) => (padLeft ? `padding-left: ${padLeft}px;` : '')}
+  ${({ $active }) => ($active ? 'background-color: #505050;' : '')}
+  ${({ $padLeft }) => ($padLeft ? `padding-left: ${$padLeft}px;` : '')}
   :hover {
     background-color: #454545;
   }
@@ -72,13 +72,13 @@ export const TabFrame = styled.div`
 `;
 
 export const Scrollable = styled.div<{
-  horizontal?: boolean;
-  vertical?: boolean;
+  $horizontal?: boolean;
+  $vertical?: boolean;
 }>`
-  overflow-x: ${({ horizontal }) => (horizontal ? 'auto' : 'hidden')};
-  overflow-y: ${({ vertical }) => (vertical ? 'auto' : 'hidden')};
-  ${({ horizontal }) => (horizontal ? 'width: 100%;' : '')}
-  ${({ vertical }) => (vertical ? 'height: 100%;' : '')}
+  overflow-x: ${({ $horizontal }) => ($horizontal ? 'auto' : 'hidden')};
+  overflow-y: ${({ $vertical }) => ($vertical ? 'auto' : 'hidden')};
+  ${({ $horizontal }) => ($horizontal ? 'width: 100%;' : '')}
+  ${({ $vertical }) => ($vertical ? 'height: 100%;' : '')}
 
   ::-webkit-scrollbar {
     height: 3px;
@@ -101,13 +101,13 @@ export const Scrollable = styled.div<{
   }
 `;
 
-export const Tab = styled.div<{ active?: boolean }>`
+export const Tab = styled.div<{ $active?: boolean }>`
   display: flex;
   align-items: center;
   cursor: pointer;
   padding: 5px 10px;
-  ${({ active }) =>
-    active ? 'background-color: #202124; color: #efefef;' : ''}
+  ${({ $active }) =>
+    $active ? 'background-color: #202124; color: #efefef;' : ''}
 `;
 
 export const CloseBtn = styled.span`
@@ -127,10 +127,10 @@ export const VSIcon = styled.img`
   vertical-align: middle;
 `;
 
-export const FolderNode = styled.div<{ padLeft?: number }>`
+export const FolderNode = styled.div<{ $padLeft?: number }>`
   display: flex;
   align-items: center;
-  padding-left: ${({ padLeft }) => padLeft || 2}px;
+  padding-left: ${({ $padLeft }) => $padLeft || 2}px;
   cursor: pointer;
   padding-bottom: 4px;
   :hover {

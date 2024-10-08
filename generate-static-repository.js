@@ -1,5 +1,5 @@
-const { exec } = require('child_process');
-const fs = require('fs');
+import fs from 'fs';
+import { exec } from 'child_process';
 
 exec('git ls-tree -r master --name-only', (error, stdout, stderr) => {
   if (error) {

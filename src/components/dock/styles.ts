@@ -32,13 +32,13 @@ export const OpenMarker = styled.div`
 
 export const DockIconDiv = styled.div<{
   label: string;
-  icon: string;
-  clicked?: boolean;
+  $icon: string;
+  $clicked?: boolean;
 }>`
   width: 46px;
   height: 46px;
   border-radius: 10px;
-  background: url(${({ icon }) => icon});
+  background: url(${({ $icon }) => $icon});
   background-size: cover;
   margin-right: 10px;
   display: flex;
@@ -77,7 +77,7 @@ export const DockIconDiv = styled.div<{
   }
 
   .overlay-click {
-    opacity: ${({ clicked }) => (clicked ? 0.2 : 0)};
+    opacity: ${({ $clicked }) => ($clicked ? 0.2 : 0)};
     background-color: #000000;
     border-radius: 10px;
     width: 100%;
