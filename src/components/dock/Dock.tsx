@@ -36,6 +36,12 @@ export const Dock = () => {
           })
         }
       />
+      <DockIcon
+        label="GitHub"
+        icon={'/github.png'}
+        onMouseEvent={(_: React.MouseEvent) => {}}
+        onClick={() => open('https://github.com/mceck')}
+      />
       {ROUTES.map((ic, i) => (
         <DockIcon
           key={i}
