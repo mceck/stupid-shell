@@ -1,7 +1,7 @@
 export const contactApi = {
   contactMe: async (data: Record<string, any>) => {
     const result = await fetch(
-      'https://mcdev-n8n.duckdns.org/webhook/contact-me',
+      'https://n8n.mcdev-home.duckdns.org/webhook/contact-me',
       {
         method: 'POST',
         headers: {
