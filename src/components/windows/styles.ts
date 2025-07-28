@@ -47,8 +47,8 @@ export const ResizeAngle = styled.div<Partial<IResizerProps>>`
 export const ActionContainer = styled.div`
   display: flex;
 
-  :hover div::after,
-  :hover div::before {
+  &:hover div::after,
+  &:hover div::before {
     display: block;
   }
 `;
@@ -83,20 +83,20 @@ export const Icon = styled.div`
   margin: 0 3px;
   position: relative;
 
-  ::after {
+  &::after {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
     display: none;
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(0, 0, 0, 0.65);
   }
 `;
 
 export const CloseIcon = styled(Icon)`
   background-color: #ff595a;
 
-  ::after {
+  &::after {
     clip-path: polygon(
       18% 44%,
       44% 44%,
@@ -117,24 +117,24 @@ export const CloseIcon = styled(Icon)`
 
 export const MinimizeIcon = styled(Icon)`
   background-color: #fdaf24;
-  ::after {
-    clip-path: polygon(20% 46%, 80% 46%, 80% 62%, 20% 62%);
+  &::after {
+    clip-path: polygon(18% 43%, 80% 43%, 80% 57%, 18% 57%);
   }
 `;
 
 export const FullscreenIcon = styled(Icon)`
   background-color: #2ac031;
-  ::after {
-    clip-path: polygon(20% 20%, 60% 20%, 20% 60%);
+  &::after {
+    clip-path: polygon(25% 25%, 64% 25%, 25% 64%);
   }
-  ::before {
+  &::before {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
     display: none;
-    background-color: rgba(0, 0, 0, 0.45);
-    clip-path: polygon(80% 80%, 40% 80%, 80% 40%);
+    background-color: rgba(0, 0, 0, 0.65);
+    clip-path: polygon(75% 75%, 36% 75%, 75% 36%);
   }
 `;
 

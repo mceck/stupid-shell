@@ -43,3 +43,159 @@ html {
   font-weight: bold;
   src: url(./style/font/SFDisplayHeavy.otf) format('opentype');
 }
+
+@keyframes genieMinimize {
+  0% {
+    transform: translateY(0) scaleY(1) scaleX(1) skewX(0deg);
+    filter: blur(0px) brightness(1);
+    border-radius: 10px;
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  15% {
+    transform: translateY(10px) scaleY(0.95) scaleX(1) skewX(1deg);
+    filter: blur(0px) brightness(0.98);
+    border-radius: 12px;
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 5% 100%);
+  }
+  30% {
+    transform: translateY(30px) scaleY(0.8) scaleX(0.95) skewX(3deg);
+    filter: blur(0.5px) brightness(0.95);
+    border-radius: 15px;
+    opacity: 0.95;
+    clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+  }
+  45% {
+    transform: translateY(60px) scaleY(0.6) scaleX(0.85) skewX(6deg);
+    filter: blur(1px) brightness(0.9);
+    border-radius: 20px;
+    opacity: 0.85;
+    clip-path: polygon(5% 0%, 95% 0%, 70% 100%, 30% 100%);
+  }
+  60% {
+    transform: translateY(100px) scaleY(0.35) scaleX(0.7) skewX(10deg);
+    filter: blur(1.5px) brightness(0.85);
+    border-radius: 25px;
+    opacity: 0.7;
+    clip-path: polygon(15% 0%, 85% 0%, 60% 100%, 40% 100%);
+  }
+  75% {
+    transform: translateY(140px) scaleY(0.15) scaleX(0.5) skewX(15deg);
+    filter: blur(2px) brightness(0.8);
+    border-radius: 30px;
+    opacity: 0.5;
+    clip-path: polygon(25% 0%, 75% 0%, 55% 100%, 45% 100%);
+  }
+  85% {
+    transform: translateY(170px) scaleY(0.06) scaleX(0.3) skewX(20deg);
+    filter: blur(2.5px) brightness(0.75);
+    border-radius: 35px;
+    opacity: 0.3;
+    clip-path: polygon(35% 0%, 65% 0%, 52% 100%, 48% 100%);
+  }
+  92% {
+    transform: translateY(185px) scaleY(0.03) scaleX(0.15) skewX(25deg);
+    filter: blur(3px) brightness(0.7);
+    border-radius: 40px;
+    opacity: 0.15;
+    clip-path: polygon(42% 0%, 58% 0%, 51% 100%, 49% 100%);
+  }
+  97% {
+    transform: translateY(195px) scaleY(0.015) scaleX(0.08) skewX(28deg);
+    filter: blur(3.5px) brightness(0.65);
+    border-radius: 45px;
+    opacity: 0.08;
+    clip-path: polygon(47% 0%, 53% 0%, 50.5% 100%, 49.5% 100%);
+  }
+  100% {
+    transform: translateY(200px) scaleY(0.005) scaleX(0.03) skewX(30deg);
+    filter: blur(4px) brightness(0.6);
+    border-radius: 50px;
+    opacity: 0;
+    clip-path: polygon(49% 0%, 51% 0%, 50.1% 100%, 49.9% 100%);
+  }
+}
+
+.animated {
+  transition: all 0.3s ease;
+}
+.minimizing {
+  animation: genieMinimize 0.3s ease-out forwards;
+}
+.restoring {
+  animation: genieRestore 0.3s ease-out forwards;
+}
+
+@keyframes genieRestore {
+  0% {
+    transform: translateY(200px) scaleY(0.005) scaleX(0.03) skewX(30deg);
+    filter: blur(4px) brightness(0.6);
+    border-radius: 50px;
+    opacity: 0;
+    clip-path: polygon(49% 0%, 51% 0%, 50.1% 100%, 49.9% 100%);
+  }
+  3% {
+    transform: translateY(195px) scaleY(0.015) scaleX(0.08) skewX(28deg);
+    filter: blur(3.5px) brightness(0.65);
+    border-radius: 45px;
+    opacity: 0.08;
+    clip-path: polygon(47% 0%, 53% 0%, 50.5% 100%, 49.5% 100%);
+  }
+  8% {
+    transform: translateY(185px) scaleY(0.03) scaleX(0.15) skewX(25deg);
+    filter: blur(3px) brightness(0.7);
+    border-radius: 40px;
+    opacity: 0.15;
+    clip-path: polygon(42% 0%, 58% 0%, 51% 100%, 49% 100%);
+  }
+  15% {
+    transform: translateY(170px) scaleY(0.06) scaleX(0.3) skewX(20deg);
+    filter: blur(2.5px) brightness(0.75);
+    border-radius: 35px;
+    opacity: 0.3;
+    clip-path: polygon(35% 0%, 65% 0%, 52% 100%, 48% 100%);
+  }
+  25% {
+    transform: translateY(140px) scaleY(0.15) scaleX(0.5) skewX(15deg);
+    filter: blur(2px) brightness(0.8);
+    border-radius: 30px;
+    opacity: 0.5;
+    clip-path: polygon(25% 0%, 75% 0%, 55% 100%, 45% 100%);
+  }
+  40% {
+    transform: translateY(100px) scaleY(0.35) scaleX(0.7) skewX(10deg);
+    filter: blur(1.5px) brightness(0.85);
+    border-radius: 25px;
+    opacity: 0.7;
+    clip-path: polygon(15% 0%, 85% 0%, 60% 100%, 40% 100%);
+  }
+  55% {
+    transform: translateY(60px) scaleY(0.6) scaleX(0.85) skewX(6deg);
+    filter: blur(1px) brightness(0.9);
+    border-radius: 20px;
+    opacity: 0.85;
+    clip-path: polygon(5% 0%, 95% 0%, 70% 100%, 30% 100%);
+  }
+  70% {
+    transform: translateY(30px) scaleY(0.8) scaleX(0.95) skewX(3deg);
+    filter: blur(0.5px) brightness(0.95);
+    border-radius: 15px;
+    opacity: 0.95;
+    clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+  }
+  85% {
+    transform: translateY(10px) scaleY(0.95) scaleX(1) skewX(1deg);
+    filter: blur(0px) brightness(0.98);
+    border-radius: 12px;
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 95% 100%, 5% 100%);
+  }
+  100% {
+    transform: translateY(0) scaleY(1) scaleX(1) skewX(0deg);
+    filter: blur(0px) brightness(1);
+    border-radius: 10px;
+    opacity: 1;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}

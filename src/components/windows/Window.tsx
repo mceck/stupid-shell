@@ -10,27 +10,24 @@ export const Window: React.FC<any> = ({
   title,
   onClose,
   onMinimize,
-  onMaximize,
   initX = 50,
   initY = 50,
   initWidth = 530,
   initHeight = 300,
   index,
+  minimizingClass,
   ...props
 }) => {
-  const [wdw, dispatch] = useReducer<React.Reducer<IWindow, ResizeAction>>(
-    resizeReducer,
-    {
-      x: initX,
-      y: initY,
-      clickOffsetX: 0,
-      clickOffsetY: 0,
-      width: initWidth,
-      height: initHeight,
-      resizing: null,
-      moving: false,
-    }
-  );
+  const [wdw, dispatch] = useReducer<IWindow, [ResizeAction]>(resizeReducer, {
+    x: initX,
+    y: initY,
+    clickOffsetX: 0,
+    clickOffsetY: 0,
+    width: initWidth,
+    height: initHeight,
+    resizing: null,
+    moving: false,
+  });
 
   const winRef = useRef<HTMLDivElement>(null);
 
@@ -136,12 +133,24 @@ export const Window: React.FC<any> = ({
     <WindowFrame
       ref={winRef}
       data-testid="wnd"
+      className={minimizingClass}
       {...props}
-      style={{ left: wdw.x, top: wdw.y, zIndex: index }}
+      style={{
+        left: wdw.x,
+        top: wdw.y,
+        zIndex: index,
+        transition: !wdw.moving ? 'left 0.3s ease, top 0.3s ease' : 'none',
+      }}
     >
       <RelPanel
         data-testid="wnd-panel"
-        style={{ width: wdw.width, height: wdw.height }}
+        style={{
+          width: wdw.width,
+          height: wdw.height,
+          transition: !wdw.resizing
+            ? 'width 0.3s ease, height 0.3s ease'
+            : 'none',
+        }}
       >
         <StatusBar
           title={title}

@@ -13,7 +13,7 @@ export const ShellLabel = styled.label`
 `;
 
 export const FormGroup = styled.div`
-  :hover {
+  &:hover {
     input,
     textarea {
       border-color: #ffffff;
@@ -66,7 +66,7 @@ export const ShellButton = styled.button`
   background-color: #eaeaea;
   color: #1f1e1e;
   cursor: pointer;
-  :not(:disabled):hover {
+  &:not(:disabled):hover {
     background-color: #ffffff;
   }
 `;

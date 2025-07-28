@@ -53,7 +53,7 @@ export const FileNode = styled.div<{ $active?: boolean; $padLeft?: number }>`
   padding-bottom: 4px;
   ${({ $active }) => ($active ? 'background-color: #505050;' : '')}
   ${({ $padLeft }) => ($padLeft ? `padding-left: ${$padLeft}px;` : '')}
-  :hover {
+  &:hover {
     background-color: #454545;
   }
   transition: all ease 100ms;
@@ -91,7 +91,7 @@ export const Scrollable = styled.div<{
     background: transparent;
   }
 
-  :hover {
+  &:hover {
     ::-webkit-scrollbar-thumb {
       background: #404040;
     }
@@ -115,7 +115,7 @@ export const CloseBtn = styled.span`
   padding: 5px;
   padding-right: 0;
   color: #aeaeae;
-  :hover {
+  &:hover {
     color: #efefef;
   }
 `;
@@ -133,7 +133,7 @@ export const FolderNode = styled.div<{ $padLeft?: number }>`
   padding-left: ${({ $padLeft }) => $padLeft || 2}px;
   cursor: pointer;
   padding-bottom: 4px;
-  :hover {
+  &:hover {
     background-color: #454545;
   }
   transition: all ease 100ms;

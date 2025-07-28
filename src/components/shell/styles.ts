@@ -48,7 +48,7 @@ export const Cmd = styled.span`
   ${({ onClick, color }) =>
     onClick
       ? `
-    :hover {
+    &:hover {
       cursor: pointer;
       border-bottom: 2px solid ${color || '#ffffff'};
     }

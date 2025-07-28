@@ -32,7 +32,7 @@ export const VSCodeProvider: React.FC<{
   children: ReactNode;
   githubUrl?: string;
 }> = ({ children, githubUrl }) => {
-  const [state, dispatch] = useReducer<React.Reducer<IVSCode, IVSCodeAction>>(
+  const [state, dispatch] = useReducer<IVSCode, [IVSCodeAction]>(
     vsReducer,
     initialVSCodeState
   );

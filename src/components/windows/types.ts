@@ -3,12 +3,12 @@ export interface IWnd {
   child: React.ReactNode;
   onClose: () => void;
   onMinimize: () => void;
-  onMaximize: () => void;
   title: string;
   initX?: number;
   initY?: number;
   initWidth?: number;
   initHeight?: number;
+  minimizingClass?: string;
 }
 
 export interface IWndActions {

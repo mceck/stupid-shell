@@ -33,6 +33,21 @@ export const WindowProvider: React.FC<{ children: ReactNode }> = ({
     (window: Partial<IWnd>) => {
       if (isOpen(window.id!)) {
         setSelectedId(window.id!);
+        setWindows((windows) =>
+          windows.map((w) => {
+            if (w.id === window.id && w.minimizingClass) {
+              return { ...w, minimizingClass: 'restoring' };
+            }
+            return w;
+          })
+        );
+        setTimeout(() => {
+          setWindows((windows) =>
+            windows.map((w) =>
+              w.id === window.id ? { ...w, minimizingClass: '' } : w
+            )
+          );
+        }, 300);
         return;
       }
       const onClose = () => {
@@ -40,12 +55,14 @@ export const WindowProvider: React.FC<{ children: ReactNode }> = ({
         setSelectedId('');
       };
       const onMinimize = () => {
-        // TODO implement
-        setWindows(windows.filter((w) => w.id !== window.id));
-        setSelectedId('');
-      };
-      const onMaximize = () => {
-        // TODO implement
+        setWindows((windows) =>
+          windows.map((w) =>
+            w.id === window.id ? { ...w, minimizingClass: 'minimizing' } : w
+          )
+        );
+        setTimeout(() => {
+          setSelectedId('');
+        }, 300);
       };
 
       const newWindow: IWnd = {
@@ -54,7 +71,6 @@ export const WindowProvider: React.FC<{ children: ReactNode }> = ({
         title: window.title || '',
         onClose: window.onClose || onClose,
         onMinimize: window.onMinimize || onMinimize,
-        onMaximize: window.onMaximize || onMaximize,
         initX: window.initX,
         initY: window.initY,
         initWidth: window.initWidth,
@@ -86,12 +102,12 @@ export const WindowProvider: React.FC<{ children: ReactNode }> = ({
           title={w.title}
           onClose={w.onClose}
           onMinimize={w.onMinimize}
-          onMaximize={w.onMaximize}
           initHeight={w.initHeight}
           initWidth={w.initWidth}
           initX={w.initX}
           initY={w.initY}
           index={w.id === selectedId ? 10 : 0}
+          minimizingClass={w.minimizingClass}
           onMouseDown={(e: any) => {
             e.stopPropagation();
             setSelectedId(w.id);

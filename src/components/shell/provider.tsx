@@ -1,6 +1,5 @@
 import React, {
   ReactNode,
-  Reducer,
   useCallback,
   useContext,
   useReducer,
@@ -36,13 +35,13 @@ export const ShellConsumer = Context.Consumer;
 export const ShellProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [state, dispatch] = useReducer<Reducer<IShell, ShellAction>>(
+  const [state, dispatch] = useReducer<IShell, [ShellAction]>(
     shellReducer,
     initialShellState
   );
 
-  const scroller = useRef<any>();
-  const cmdInput = useRef<any>();
+  const scroller = useRef<any>(null);
+  const cmdInput = useRef<any>(null);
 
   const moveFrame = useCallback(
     (mov: { x: number; y: number }) => {
