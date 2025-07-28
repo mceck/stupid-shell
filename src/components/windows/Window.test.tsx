@@ -1,5 +1,6 @@
-import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
+import { fireEvent, render, cleanup } from '@testing-library/react';
+import { afterEach, expect, test } from 'vitest';
 import App from '../../App';
 
 const NON_INFLUENT = 999;
@@ -33,6 +34,8 @@ const dragEvent = (target: HTMLElement, x: number, y: number) => {
   });
   fireEvent.mouseUp(target);
 };
+
+afterEach(cleanup);
 
 test('move wnd', () => {
   const { wnd, wndBar } = setupTest();
@@ -304,5 +307,8 @@ test('minimize window', () => {
     if (closeBtn) fireEvent.click(closeBtn);
   });
   windowsShowed = app.queryAllByTestId('wnd');
-  expect(windowsShowed.length).toBe(1);
+  expect(windowsShowed.length).toBe(2);
+  expect(windowsShowed.some((w) => w.classList.contains('minimizing'))).toBe(
+    true
+  );
 });

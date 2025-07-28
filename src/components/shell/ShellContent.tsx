@@ -31,7 +31,7 @@ export const ShellContent = () => {
           try {
             from = resolvePath(relPath || '/', shell.path);
           } catch {
-            console.log('path not exist');
+            console.warn('path not exist');
             return;
           }
         }
@@ -46,7 +46,6 @@ export const ShellContent = () => {
           completed += childs[0].name;
         } else if (childs) {
           // TODO show autocomplete option?
-          console.log(childs.map((f) => f.name));
         }
         setCmd([...cmds.slice(0, -1), completed].join(' '));
         break;

@@ -1,19 +1,25 @@
-import '@testing-library/jest-dom';
-import { fireEvent, render, RenderResult } from '@testing-library/react';
+import '@testing-library/jest-dom/vitest';
+import {
+  fireEvent,
+  render,
+  RenderResult,
+  cleanup,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { expect, test, afterEach, beforeEach } from 'vitest';
 import App from '../../App';
 
 const setupTest = () => {
   const shell = render(<App />);
   shell.getByText('Terminal - mcdev@web.mcdev.host');
-  shell.getByText(/\/home\/mcdev/gi);
+  shell.getByText(/\/home\/mcdev/i);
   shell.getByTestId('cmd');
   return { shell };
 };
 
-const typeCmd = (cmd: string, shell: RenderResult) => {
+const typeCmd = async (cmd: string, shell: RenderResult) => {
   const cmdInput = shell.getByTestId('cmd');
-  userEvent.type(cmdInput, cmd);
+  await userEvent.type(cmdInput, cmd);
   expect(cmdInput.closest('input')?.value).toBe(cmd);
   fireEvent(
     cmdInput,
@@ -23,72 +29,74 @@ const typeCmd = (cmd: string, shell: RenderResult) => {
   if (inpt) expect(inpt.closest('input')?.value).toBe('');
 };
 
-test('ls home', () => {
+afterEach(cleanup);
+
+test('ls home', async () => {
   const { shell } = setupTest();
-  typeCmd('ls ~', shell);
+  await typeCmd('ls ~', shell);
   shell.getByText('skills');
   shell.getByText('contact');
   shell.getByText('curriculum');
 });
 
-test('cd', () => {
+test('cd', async () => {
   const { shell } = setupTest();
-  typeCmd('cd', shell);
+  await typeCmd('cd', shell);
   shell.getByText('cd');
 });
 
-test('cd skills dir', () => {
+test('cd skills dir', async () => {
   const { shell } = setupTest();
-  typeCmd('cd skills', shell);
-  shell.getByText(/\/home\/mcdev\/skills/gi);
-  typeCmd('ls', shell);
+  await typeCmd('cd skills', shell);
+  shell.getByText(/\/home\/mcdev\/skills/i);
+  await typeCmd('ls', shell);
   shell.getByText('Frontend');
 });
 
-test('cd wrong dir', () => {
+test('cd wrong dir', async () => {
   const { shell } = setupTest();
-  typeCmd('cd not_existing_dir', shell);
-  shell.getByText(/cd: no such file or directory:/gi);
+  await typeCmd('cd not_existing_dir', shell);
+  shell.getByText(/cd: no such file or directory:/i);
 });
 
-test('help', () => {
+test('help', async () => {
   const { shell } = setupTest();
-  typeCmd('help', shell);
-  shell.getByText(/help: print help text/gi);
+  await typeCmd('help', shell);
+  shell.getByText(/help: print help text/i);
 });
 
-test('echo', () => {
+test('echo', async () => {
   const { shell } = setupTest();
-  typeCmd('echo ciao ciao', shell);
+  await typeCmd('echo ciao ciao', shell);
   shell.getByText('ciao ciao');
 });
 
-test('clear', () => {
+test('clear', async () => {
   const { shell } = setupTest();
-  typeCmd('cd skills', shell);
+  await typeCmd('cd skills', shell);
   shell.getByText('cd skills');
-  typeCmd('clear', shell);
+  await typeCmd('clear', shell);
   const q = shell.queryByText('cd skills');
   expect(q).toBeNull();
-  shell.getByText(/\/home\/mcdev\/skills/gi);
+  shell.getByText(/\/home\/mcdev\/skills/i);
 });
 
-test('curriculum.app cmd', () => {
+test('curriculum.app cmd', async () => {
   const { shell } = setupTest();
-  typeCmd('curriculum.app', shell);
-  shell.getByText(/Mattia Cecchini/gi);
-  shell.getByText(/PROFESSIONAL EXPERIENCE/gi);
+  await typeCmd('curriculum.app', shell);
+  shell.getByText(/Mattia Cecchini/i);
+  shell.getByText(/PROFESSIONAL EXPERIENCE/i);
 });
 
-test('contact.me cmd', () => {
+test('contact.me cmd', async () => {
   const { shell } = setupTest();
-  typeCmd('contact.me', shell);
-  shell.getByText(/Contact me!/gi);
-  shell.getByText(/Email:/gi);
+  await typeCmd('contact.me', shell);
+  shell.getByText(/Contact me!/i);
+  shell.getByText(/Email:/i);
 });
 
-test('exit', () => {
+test('exit', async () => {
   const { shell } = setupTest();
-  typeCmd('exit', shell);
-  shell.getByText(/Can't close this window!/gi);
+  await typeCmd('exit', shell);
+  shell.getByText(/Can't close this window!/i);
 });

@@ -55,7 +55,7 @@ export const ShellProvider: React.FC<{ children: ReactNode }> = ({
       setTimeout(
         () =>
           scroller.current &&
-          scroller.current.scrollTo(0, scroller.current.scrollHeight),
+          scroller.current.scrollTo?.(0, scroller.current.scrollHeight),
         1
       );
   }, [scroller]);
