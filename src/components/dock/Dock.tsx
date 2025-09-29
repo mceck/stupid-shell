@@ -19,6 +19,7 @@ export const Dock = () => {
       <DockIcon
         label="Visual Studio Code"
         icon={'/vscode.png'}
+        bgColor="#ffffff"
         clicked={vsclick}
         onMouseEvent={(event: React.MouseEvent) => {
           setVsclick(event.type === 'mousedown');
@@ -38,6 +39,7 @@ export const Dock = () => {
       />
       <DockIcon
         label="GitHub"
+        bgColor="#ffffff"
         icon={'/github.png'}
         onMouseEvent={(_: React.MouseEvent) => {}}
         onClick={() => open('https://github.com/mceck')}
@@ -47,6 +49,8 @@ export const Dock = () => {
           key={i}
           label={ic.label}
           icon={ic.icon}
+          bgColor={ic.bgColor}
+          full={ic.full}
           clicked={clicked[i]}
           onMouseEvent={(event: React.MouseEvent) => {
             const click = [...clicked];
@@ -63,20 +67,32 @@ export const Dock = () => {
 const DockIcon: React.FC<{
   label: string;
   icon: string;
+  bgColor?: string;
   clicked?: boolean;
   isOpen?: boolean;
+  full?: boolean;
   onMouseEvent: (event: React.MouseEvent) => void;
   onClick: (event: React.MouseEvent) => void;
-}> = ({ onMouseEvent, isOpen, clicked, icon, ...props }) => {
+}> = ({ onMouseEvent, isOpen, clicked, bgColor, full, icon, ...props }) => {
   return (
     <DockIconDiv
       {...props}
       $clicked={clicked}
-      $icon={icon}
+      $color={bgColor || 'transparent'}
       onMouseDown={onMouseEvent}
       onMouseLeave={onMouseEvent}
       onMouseUp={onMouseEvent}
     >
+      <img
+        src={icon}
+        alt={props.label}
+        style={{
+          width: full ? '110%' : '80%',
+          height: full ? '110%' : '80%',
+          pointerEvents: 'none',
+        }}
+        draggable={false}
+      />
       <div className="overlay-click" />
       {isOpen && <OpenMarker />}
     </DockIconDiv>

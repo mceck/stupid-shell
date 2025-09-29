@@ -8,19 +8,19 @@ export const DockFrame = styled.div`
   bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
-  height: 70px;
-  border: 1px solid rgba(120, 120, 120, 0.5);
+  height: 60px;
+  border: 1px solid rgba(180, 180, 180, 0.5);
   border-radius: 20px;
-  background-color: rgba(0, 0, 0, 0.12);
-  backdrop-filter: blur(35px);
+  background-color: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
   padding: 10px;
   padding-right: 0;
   z-index: 100;
 `;
 
 export const OpenMarker = styled.div`
-  width: 3px;
-  height: 3px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background-color: #fefefe;
   position: absolute;
@@ -32,16 +32,17 @@ export const OpenMarker = styled.div`
 
 export const DockIconDiv = styled.div<{
   label: string;
-  $icon: string;
+  $color: string;
   $clicked?: boolean;
 }>`
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(180, 180, 180, 0.2);
   border-radius: 10px;
-  background: url(${({ $icon }) => $icon});
-  background-size: cover;
+  background-color: ${({ $color }) => $color};
   margin-right: 10px;
   display: flex;
+  backdrop-filter: blur(16px);
   align-items: center;
   justify-content: center;
   position: relative;
@@ -50,15 +51,15 @@ export const DockIconDiv = styled.div<{
   &:hover::before {
     content: '${({ label }) => label}';
     position: absolute;
-    top: -100%;
+    top: -130%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #323232;
+    background-color: rgba(50, 50, 50, 0.75);
     color: #ffffff;
     padding: 4px 15px;
     border: 1px inset rgba(255, 255, 255, 0.2);
-    box-shadow: 0 1px 3px #000000;
-    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(13, 97, 170, 0.5);
+    border-radius: 15px;
     inline-size: max-content;
     font-size: 0.9rem;
   }
@@ -66,13 +67,14 @@ export const DockIconDiv = styled.div<{
   &:hover::after {
     content: '';
     position: absolute;
-    top: -26px;
+    top: -29.5px;
     left: 50%;
+    border-radius: 3px;
     transform: translateX(-50%) rotate(45deg);
-    background-color: #323232;
+    background-color: rgba(50, 50, 50, 0.75);
     width: 10px;
     height: 10px;
-    border: 1px inset rgba(200, 200, 200, 0.2);
+    border: 1px inset rgba(255, 255, 255, 0.2);
     clip-path: polygon(100% 100%, 0 100%, 100% 0%);
   }
 
