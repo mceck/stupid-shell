@@ -6,7 +6,7 @@ import {
   cleanup,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { expect, test, afterEach, beforeEach } from 'vitest';
+import { expect, test, afterEach } from 'vitest';
 import App from '../../App';
 
 const setupTest = () => {
