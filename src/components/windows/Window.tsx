@@ -139,7 +139,7 @@ export const Window: React.FC<any> = ({
         left: wdw.x,
         top: wdw.y,
         zIndex: index,
-        transition: !wdw.moving ? 'left 0.3s ease, top 0.3s ease' : 'none',
+        transition: !wdw.resizing && !wdw.moving ? 'left 0.3s ease, top 0.3s ease' : 'none',
       }}
     >
       <RelPanel
@@ -147,7 +147,7 @@ export const Window: React.FC<any> = ({
         style={{
           width: wdw.width,
           height: wdw.height,
-          transition: !wdw.resizing
+          transition: !wdw.resizing && !wdw.moving
             ? 'width 0.3s ease, height 0.3s ease'
             : 'none',
         }}

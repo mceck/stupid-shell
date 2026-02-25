@@ -63,7 +63,8 @@ export const FileNode = styled.div<{ $active?: boolean; $padLeft?: number }>`
 
 export const TabFrame = styled.div`
   height: 28px;
-  width: 100%;
+  width: max-content;
+  min-width: 100%;
   padding-left: 30px;
   display: flex;
   color: #aeaeae;
@@ -80,29 +81,54 @@ export const Scrollable = styled.div<{
   ${({ $horizontal }) => ($horizontal ? 'width: 100%;' : '')}
   ${({ $vertical }) => ($vertical ? 'height: 100%;' : '')}
 
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &:hover {
+    scrollbar-color: #181818 transparent;
+  }
+
   ::-webkit-scrollbar {
-    height: 3px;
-    width: 10px;
+    height: 2px !important;
+    width: 10px !important;
   }
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: transparent !important;
   }
   ::-webkit-scrollbar-thumb {
-    background: transparent;
+    background: transparent !important;
+    border-radius: 4px !important;
+    border: none !important;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: transparent !important;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: transparent !important;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
+  ::-webkit-scrollbar-button {
+    display: none !important;
   }
 
   &:hover {
     ::-webkit-scrollbar-thumb {
-      background: #404040;
+      background: #181818 !important;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #424242;
+      background: #424242 !important;
+    }
+    ::-webkit-scrollbar-thumb:active {
+      background: #4a4a4a !important;
     }
   }
 `;
 
 export const Tab = styled.div<{ $active?: boolean }>`
   display: flex;
+  flex: none;
   align-items: center;
   cursor: pointer;
   padding: 5px 10px;

@@ -31,6 +31,34 @@ export const ShellLines = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   cursor: text;
+
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+
+  &:hover {
+    scrollbar-color: #101010 transparent;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: transparent !important;
+    border-radius: 4px !important;
+    border: none !important;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: transparent !important;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background: transparent !important;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent !important;
+  }
+  ::-webkit-scrollbar-button {
+    display: none !important;
+  }
 `;
 
 export const ShellIco = styled.img`
